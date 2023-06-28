@@ -6,6 +6,10 @@ import { clerkClient } from './clerkClient'
 
 export function withClerkMiddleware(options: ClerkOptions) {
   return eventHandler(async (event) => {
+    event.context.auth = null
+    // @ts-expect-error: TODO
+    event.node.req.auth = null
+
     const cookies = parseCookies(event)
     const secretKey = options.secretKey || constants.SECRET_KEY
     const publishableKey = options.publishableKey || constants.PUBLISHABLE_KEY
@@ -50,7 +54,6 @@ export function withClerkMiddleware(options: ClerkOptions) {
         publishableKey,
         frontendApi: constants.FRONTEND_API,
       })
-
       setResponseStatus(event, 401)
       setResponseHeaders(event, {
         [constants.Headers.AuthReason]: requestState.reason,
@@ -61,11 +64,13 @@ export function withClerkMiddleware(options: ClerkOptions) {
     }
 
     event.context.auth = requestState.toAuth()
+    // @ts-expect-error: TODO
+    event.node.req.auth = requestState.toAuth()
   })
 }
 
 declare module 'h3' {
   interface H3EventContext {
-    auth: SignedInAuthObject | SignedOutAuthObject
+    auth: null | SignedInAuthObject | SignedOutAuthObject
   }
 }
