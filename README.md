@@ -28,10 +28,10 @@ app.use(withClerkMiddleware({
 app.use(
   '/api/user',
   eventHandler((event) => {
-    if (!event.context?.auth?.user)
+    if (!event.context?.auth?.userId)
       throw createError({ statusCode: 401 })
 
-    return event.context.auth.user
+    return { auth: event.context.auth }
   })
 )
 ```
