@@ -1,5 +1,5 @@
 import { type ClerkOptions } from '@clerk/backend'
-import { eventHandler, parseCookies, setResponseHeaders, setResponseStatus } from 'h3'
+import { eventHandler, getHeaders, parseCookies, setResponseHeaders, setResponseStatus } from 'h3'
 import * as constants from './constants'
 import { getSingleValueFromArrayHeader } from './utils'
 import { clerkClient } from './clerkClient'
