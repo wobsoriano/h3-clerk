@@ -147,5 +147,28 @@ describe('withClerkMiddleware(options)', () => {
 
   test.todo('handles interstitial case by terminating the request with interstitial html page and 401 http code')
 
-  test.todo('handles signout case by populating the req.auth')
+  test('handles signout case by populating the event.context.auth', async () => {
+    authenticateRequestMock.mockResolvedValue({
+      isUnknown: false,
+      isInterstitial: false,
+      isSignedIn: false,
+      toAuth: () => 'mockedAuth',
+    })
+
+    app.use('/', eventHandler((event) => {
+      return { auth: event.context.auth }
+    }))
+
+    const response = await request.get('/').set('Authorization', 'Bearer deadbeef')
+    expect(response.body).toEqual({ auth: 'mockedAuth' })
+    expect(authenticateRequestMock).toBeCalledWith(
+      expect.objectContaining({
+        secretKey: 'TEST_API_KEY',
+        apiKey: 'TEST_API_KEY',
+        headerToken: 'deadbeef',
+        cookieToken: undefined,
+        clientUat: undefined,
+      }),
+    )
+  })
 })
