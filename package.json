@@ -51,9 +51,11 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.5",
+    "@types/supertest": "^2.0.12",
     "bumpp": "^9.1.1",
     "eslint": "^8.43.0",
     "h3": "^1.7.0",
+    "supertest": "^6.3.3",
     "taze": "^0.10.2",
     "tsup": "7.1.0",
     "typescript": "^5.1.5",
