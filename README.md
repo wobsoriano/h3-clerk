@@ -32,6 +32,16 @@ app.use(
 )
 ```
 
+## TypeScript Shim
+
+```ts
+declare module 'h3' {
+  interface H3EventContext {
+    auth: null | SignedInAuthObject | SignedOutAuthObject
+  }
+}
+```
+
 ## License
 
 MIT
