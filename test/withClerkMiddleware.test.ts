@@ -51,8 +51,8 @@ describe('withClerkMiddleware(options)', () => {
     }))
 
     app.use(withClerkMiddleware({
-      publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
-      secretKey: process.env.CLERK_SECRET_KEY,
+      publishableKey: import.meta.env.CLERK_PUBLISHABLE_KEY,
+      secretKey: import.meta.env.CLERK_SECRET_KEY,
     }))
 
     const resp = request.get('/').set('Cookie', '_gcl_au=value1; ko_id=value2; __session=deadbeef; __client_uat=1675692233')
