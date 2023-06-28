@@ -7,8 +7,6 @@ import { clerkClient } from './clerkClient'
 export function withClerkMiddleware(options: ClerkOptions) {
   return eventHandler(async (event) => {
     event.context.auth = null
-    // @ts-expect-error: TODO
-    event.node.req.auth = null
 
     const cookies = parseCookies(event)
     const secretKey = options.secretKey || constants.SECRET_KEY
@@ -64,8 +62,6 @@ export function withClerkMiddleware(options: ClerkOptions) {
     }
 
     event.context.auth = requestState.toAuth()
-    // @ts-expect-error: TODO
-    event.node.req.auth = requestState.toAuth()
   })
 }
 

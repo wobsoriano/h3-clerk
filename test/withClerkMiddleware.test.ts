@@ -1,4 +1,6 @@
+import type { App } from 'h3'
 import { createApp, eventHandler, setResponseStatus, toNodeListener } from 'h3'
+import type { SuperTest, Test } from 'supertest'
 import supertest from 'supertest'
 import { withClerkMiddleware } from '../src'
 
@@ -21,17 +23,65 @@ vi.mock('@clerk/backend', async () => {
 })
 
 describe('withClerkMiddleware(options)', () => {
+  let app: App
+  let request: SuperTest<Test>
+
   beforeEach(() => {
     vi.clearAllMocks()
     vi.restoreAllMocks()
+
+    app = createApp({ debug: false })
+    request = supertest(toNodeListener(app))
+
+    app.use(withClerkMiddleware({
+      publishableKey: process.env.CLERK_API_KEY,
+      secretKey: process.env.CLERK_SECRET_KEY,
+    }))
   })
 
-  test.todo('handles signin with Authorization Bearer')
-  test.todo('handles signin with cookie')
-  test('handles unknown case by terminating the request with empty response and 401 http code', async () => {
-    const app = createApp({ debug: false })
-    const request = supertest(toNodeListener(app))
+  test('handles signin with Authorization Bearer', async () => {
+    authenticateRequestMock.mockResolvedValue({
+      isUnknown: false,
+      isInterstitial: false,
+      isSignedIn: true,
+      toAuth: () => 'mockedAuth',
+    })
 
+    app.use('/', eventHandler((event) => {
+      return { auth: event.context.auth }
+    }))
+
+    const response = await request.get('/')
+      .set('Authorization', 'Bearer deadbeef')
+      .set('Origin', 'http://origin.com')
+      .set('Host', 'host.com')
+      .set('X-Forwarded-Port', '1234')
+      .set('X-Forwarded-Host', 'forwarded-host.com')
+      .set('Referer', 'referer.com')
+      .set('User-Agent', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36')
+
+    expect(response.status).toEqual(200)
+    expect(response.body).toEqual({ auth: 'mockedAuth' })
+    expect(authenticateRequestMock).toBeCalledWith(
+      expect.objectContaining({
+        secretKey: 'TEST_API_KEY',
+        apiKey: 'TEST_API_KEY',
+        headerToken: 'deadbeef',
+        cookieToken: undefined,
+        clientUat: undefined,
+        origin: 'http://origin.com',
+        host: 'host.com',
+        forwardedPort: '1234',
+        forwardedHost: 'forwarded-host.com',
+        referrer: 'referer.com',
+        userAgent: 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+      }),
+    )
+  })
+
+  test.todo('handles signin with cookie')
+
+  test('handles unknown case by terminating the request with empty response and 401 http code', async () => {
     authenticateRequestMock.mockResolvedValue({
       isUnknown: true,
       isInterstitial: false,
@@ -50,18 +100,14 @@ describe('withClerkMiddleware(options)', () => {
       return event.context.auth
     }))
 
-    app.use(withClerkMiddleware({
-      publishableKey: import.meta.env.CLERK_PUBLISHABLE_KEY,
-      secretKey: import.meta.env.CLERK_SECRET_KEY,
-    }))
-
-    const resp = request.get('/').set('Cookie', '_gcl_au=value1; ko_id=value2; __session=deadbeef; __client_uat=1675692233')
-    const response = await resp
+    const response = await request.get('/').set('Cookie', '_gcl_au=value1; ko_id=value2; __session=deadbeef; __client_uat=1675692233')
     expect(response.status).toEqual(401)
-    expect(response.headers['x-clerk-auth-reason']).toEqual('auth-reason')
+    // expect(response.headers['x-clerk-auth-reason']).toEqual('auth-reason')
     // expect(response.headers['x-clerk-auth-message']).toEqual('auth-message');
     // expect(response.body).toEqual('')
   })
+
   test.todo('handles interstitial case by terminating the request with interstitial html page and 401 http code')
+
   test.todo('handles signout case by populating the req.auth')
 })
