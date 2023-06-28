@@ -10,7 +10,9 @@ import * as constants from './constants'
 import { getSingleValueFromArrayHeader } from './utils'
 import { clerkClient } from './clerkClient'
 
-export function withClerkMiddleware(options: ClerkOptions) {
+export type ClerkH3Options = Omit<ClerkOptions, 'apiKey'>
+
+export function withClerkMiddleware(options: ClerkH3Options) {
   return eventHandler(async (event) => {
     const cookies = parseCookies(event)
     const secretKey = options.secretKey || constants.SECRET_KEY
