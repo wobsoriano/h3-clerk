@@ -1,3 +1,9 @@
+/**
+ * This middleware is a port of the official Fastify Clerk middleware.
+ *
+ * Credits to the Clerk team.
+ * https://github.com/clerkinc/javascript/blob/main/packages/fastify/src/withClerkMiddleware.ts
+ */
 import type { ClerkOptions, SignedInAuthObject, SignedOutAuthObject } from '@clerk/backend'
 import { eventHandler, getHeaders, parseCookies, setResponseHeaders, setResponseStatus } from 'h3'
 import * as constants from './constants'
