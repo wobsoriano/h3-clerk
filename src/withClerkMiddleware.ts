@@ -1,4 +1,4 @@
-import { type ClerkOptions } from '@clerk/backend'
+import type { ClerkOptions, SignedInAuthObject, SignedOutAuthObject } from '@clerk/backend'
 import { eventHandler, getHeaders, parseCookies, setResponseHeaders, setResponseStatus } from 'h3'
 import * as constants from './constants'
 import { getSingleValueFromArrayHeader } from './utils'
@@ -62,4 +62,10 @@ export function withClerkMiddleware(options: ClerkOptions) {
 
     event.context.auth = requestState.toAuth()
   })
+}
+
+declare module 'h3' {
+  interface H3EventContext {
+    auth: SignedInAuthObject | SignedOutAuthObject
+  }
 }
