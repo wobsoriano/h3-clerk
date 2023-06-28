@@ -11,8 +11,7 @@ pnpm add h3-clerk
 ## Usage
 
 ```ts
-import { createServer } from 'node:http'
-import { createApp, eventHandler, toNodeListener } from 'h3'
+import { createApp, eventHandler } from 'h3'
 import { withClerkMiddleware } from 'h3-clerk'
 
 const app = createApp()
@@ -26,8 +25,6 @@ app.use(
   '/',
   eventHandler(() => 'Hello world!')
 )
-
-createServer(toNodeListener(app)).listen(process.env.PORT || 3000)
 ```
 
 ## License
