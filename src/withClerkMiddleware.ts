@@ -12,8 +12,6 @@ import { clerkClient } from './clerkClient'
 
 export function withClerkMiddleware(options: ClerkOptions) {
   return eventHandler(async (event) => {
-    event.context.auth = null
-
     const cookies = parseCookies(event)
     const secretKey = options.secretKey || constants.SECRET_KEY
     const publishableKey = options.publishableKey || constants.PUBLISHABLE_KEY
@@ -73,6 +71,6 @@ export function withClerkMiddleware(options: ClerkOptions) {
 
 declare module 'h3' {
   interface H3EventContext {
-    auth: null | SignedInAuthObject | SignedOutAuthObject
+    auth: SignedInAuthObject | SignedOutAuthObject
   }
 }
