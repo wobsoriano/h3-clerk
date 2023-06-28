@@ -1,0 +1,55 @@
+{
+  "name": "h3-clerk",
+  "version": "0.0.0",
+  "packageManager": "pnpm@8.6.5",
+  "description": "",
+  "author": "Robert Soriano <sorianorobertc@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/wobsoriano/h3-clerk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wobsoriano/h3-clerk.git"
+  },
+  "bugs": "https://github.com/wobsoriano/h3-clerk/issues",
+  "keywords": [],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build-fast": "tsup src/index.ts --format cjs,esm",
+    "build": "pnpm build-fast --dts-resolve",
+    "lint": "eslint .",
+    "prepublishOnly": "pnpm build",
+    "release": "bumpp && npm publish",
+    "test": "vitest",
+    "update-deps": "taze -w && pnpm i",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "h3": "^1.7.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.39.5",
+    "bumpp": "^9.1.1",
+    "eslint": "^8.43.0",
+    "h3": "^1.7.0",
+    "taze": "^0.10.2",
+    "tsup": "7.1.0",
+    "typescript": "^5.1.5",
+    "vitest": "^0.32.2"
+  },
+  "eslintConfig": {
+    "extends": "@antfu"
+  }
+}
