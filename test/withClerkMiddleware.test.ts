@@ -79,7 +79,45 @@ describe('withClerkMiddleware(options)', () => {
     )
   })
 
-  test.todo('handles signin with cookie')
+  test('handles signin with cookie', async () => {
+    authenticateRequestMock.mockResolvedValue({
+      isUnknown: false,
+      isInterstitial: false,
+      isSignedIn: true,
+      toAuth: () => 'mockedAuth',
+    })
+
+    app.use('/', eventHandler((event) => {
+      return { auth: event.context.auth }
+    }))
+
+    const response = await request.get('/')
+      .set('Cookie', '_gcl_au=value1; ko_id=value2; __session=deadbeef; __client_uat=1675692233')
+      .set('Origin', 'http://origin.com')
+      .set('Host', 'host.com')
+      .set('X-Forwarded-Port', '1234')
+      .set('X-Forwarded-Host', 'forwarded-host.com')
+      .set('Referer', 'referer.com')
+      .set('User-Agent', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36')
+
+    expect(response.status).toEqual(200)
+    expect(response.body).toEqual({ auth: 'mockedAuth' })
+    expect(authenticateRequestMock).toBeCalledWith(
+      expect.objectContaining({
+        secretKey: 'TEST_API_KEY',
+        apiKey: 'TEST_API_KEY',
+        cookieToken: 'deadbeef',
+        headerToken: undefined,
+        clientUat: '1675692233',
+        origin: 'http://origin.com',
+        host: 'host.com',
+        forwardedPort: '1234',
+        forwardedHost: 'forwarded-host.com',
+        referrer: 'referer.com',
+        userAgent: 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+      }),
+    )
+  })
 
   test('handles unknown case by terminating the request with empty response and 401 http code', async () => {
     authenticateRequestMock.mockResolvedValue({
