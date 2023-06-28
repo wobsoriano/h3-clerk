@@ -11,7 +11,7 @@ pnpm add h3-clerk
 ## Usage
 
 ```ts
-import { createApp, eventHandler } from 'h3'
+import { createApp, createError, eventHandler } from 'h3'
 import { withClerkMiddleware } from 'h3-clerk'
 
 const app = createApp()
@@ -23,7 +23,12 @@ app.use(withClerkMiddleware({
 
 app.use(
   '/',
-  eventHandler(() => 'Hello world!')
+  eventHandler((event) => {
+    if (!event.context?.auth)
+      throw createError({ statusCode: 401 })
+
+    return event.context.auth
+  })
 )
 ```
 
