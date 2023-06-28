@@ -30,7 +30,7 @@ app.use(
   eventHandler((event) => {
     if (!event.context.auth.userId) {
       setResponseStatus(event, 403)
-      return
+      return ''
     }
 
     return { hello: 'world' }

@@ -12,7 +12,6 @@ vi.mock('@clerk/backend', async () => {
 
   return {
     ...mod,
-    // constants: {},
     Clerk: () => {
       return {
         authenticateRequest: (...args: any) => authenticateRequestMock(...args),
