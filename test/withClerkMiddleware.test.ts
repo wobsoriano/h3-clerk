@@ -135,14 +135,14 @@ describe('withClerkMiddleware(options)', () => {
         return ''
       }
 
-      return event.context.auth
+      return { auth: event.context.auth }
     }))
 
     const response = await request.get('/').set('Cookie', '_gcl_au=value1; ko_id=value2; __session=deadbeef; __client_uat=1675692233')
     expect(response.status).toEqual(401)
-    // expect(response.headers['x-clerk-auth-reason']).toEqual('auth-reason')
-    // expect(response.headers['x-clerk-auth-message']).toEqual('auth-message');
-    // expect(response.body).toEqual('')
+    expect(response.headers['x-clerk-auth-reason']).toEqual('auth-reason')
+    expect(response.headers['x-clerk-auth-message']).toEqual('auth-message')
+    expect(response.text).toEqual('')
   })
 
   test('handles interstitial case by terminating the request with interstitial html page and 401 http code', async () => {
