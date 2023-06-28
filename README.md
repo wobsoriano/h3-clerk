@@ -1,9 +1,34 @@
-# library-starter
+# h3-clerk
 
-Features:
+Unofficial Clerk middleware for H3.
 
-- Bundle with [tsup](https://github.com/egoist/tsup)
-- Test with [vitest](https://vitest.dev)
+## Install
+
+```bash
+pnpm add h3-clerk
+```
+
+## Usage
+
+```ts
+import { createServer } from 'node:http'
+import { createApp, eventHandler, toNodeListener } from 'h3'
+import { withClerkMiddleware } from 'h3-clerk'
+
+const app = createApp()
+
+app.use(withClerkMiddleware({
+  publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
+  secretKey: process.env.CLERK_SECRET_KEY,
+}))
+
+app.use(
+  '/',
+  eventHandler(() => 'Hello world!')
+)
+
+createServer(toNodeListener(app)).listen(process.env.PORT || 3000)
+```
 
 ## License
 
