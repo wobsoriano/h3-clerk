@@ -1,8 +1,10 @@
 # h3-clerk
 
-Unofficial Clerk middleware for H3.
+Unofficial [Clerk](https://clerk.com/) middleware for H3.
 
-## Install
+## Getting Started
+
+To use this plugin you should first create a Clerk application and retrieve a `Secret Key` and a `Publishable Key` for you application (see [here](https://clerk.com/docs/reference/node/getting-started)) to be used as environment variables `CLERK_PUBLISHABLE_KEY` & `CLERK_SECRET_KEY`.
 
 ```bash
 pnpm add h3-clerk
