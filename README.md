@@ -12,12 +12,6 @@ To use this plugin you should first create a Clerk application and retrieve a `S
 pnpm add h3-clerk
 ```
 
-## Build
-
-```bash
-pnpm build
-```
-
 ## Usage
 
 ```ts
