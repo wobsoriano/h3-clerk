@@ -45,7 +45,7 @@ app.use(
 ```ts
 declare module 'h3' {
   interface H3EventContext {
-    auth: SignedInAuthObject | SignedOutAuthObject
+    auth: import('@clerk/backend').SignedInAuthObject | import('@clerk/backend').SignedOutAuthObject
   }
 }
 ```
