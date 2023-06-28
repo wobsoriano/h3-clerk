@@ -22,12 +22,12 @@ app.use(withClerkMiddleware({
 }))
 
 app.use(
-  '/',
+  '/api/user',
   eventHandler((event) => {
-    if (!event.context?.auth)
+    if (!event.context?.auth?.user)
       throw createError({ statusCode: 401 })
 
-    return event.context.auth
+    return event.context.auth.user
   })
 )
 ```
