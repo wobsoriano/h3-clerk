@@ -49,15 +49,15 @@
     "@clerk/backend": "^0.23.6"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.39.5",
+    "@antfu/eslint-config": "^0.39.6",
     "@types/supertest": "^2.0.12",
     "bumpp": "^9.1.1",
     "eslint": "^8.43.0",
-    "h3": "^1.7.0",
+    "h3": "^1.7.1",
     "supertest": "^6.3.3",
-    "taze": "^0.10.2",
+    "taze": "^0.10.3",
     "tsup": "7.1.0",
-    "typescript": "^5.1.5",
+    "typescript": "^5.1.6",
     "vitest": "^0.32.2"
   },
   "eslintConfig": {
