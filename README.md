@@ -29,13 +29,15 @@ app.use(withClerkMiddleware({
 
 app.use(
   '/private',
-  eventHandler((event) => {
+  eventHandler(async (event) => {
     if (!event.context.auth.userId) {
       setResponseStatus(event, 403)
       return ''
     }
 
-    return { hello: 'world' }
+    const user = await clerkClient.users.getUser(userId)
+
+    return { user }
   })
 )
 ```
