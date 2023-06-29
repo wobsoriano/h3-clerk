@@ -18,7 +18,7 @@ pnpm add h3-clerk
 
 ```ts
 import { createApp, eventHandler, setResponseStatus } from 'h3'
-import { withClerkMiddleware } from 'h3-clerk'
+import { clerkClient, withClerkMiddleware } from 'h3-clerk'
 
 const app = createApp()
 
