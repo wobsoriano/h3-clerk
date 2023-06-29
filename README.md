@@ -30,7 +30,9 @@ app.use(withClerkMiddleware({
 app.use(
   '/private',
   eventHandler(async (event) => {
-    if (!event.context.auth.userId) {
+    const { userId } = event.context.auth
+
+    if (!userId) {
       setResponseStatus(event, 403)
       return ''
     }
