@@ -50,7 +50,7 @@ export function withClerkMiddleware(options: ClerkH3Options) {
         [constants.Headers.AuthReason]: requestState.reason,
         [constants.Headers.AuthMessage]: requestState.message,
       })
-      return
+      return ''
     }
 
     if (requestState.isInterstitial) {
