@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^0.23.6
-        version: 0.23.6
+        specifier: ^0.23.7
+        version: 0.23.7
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^0.39.6
@@ -171,8 +171,8 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
-  /@clerk/backend@0.23.6:
-    resolution: {integrity: sha512-+JnG9jmqoqPPKCHEtGf7vhFj2G8qNXmkPR8cDycjbUje/rXGNzxYAkgGaOahD9gXj5oZYMTKfGAebPf5i24JuA==}
+  /@clerk/backend@0.23.7:
+    resolution: {integrity: sha512-/Fxh4mGp1vunryGKsiX6G33fSOxYpJT0sBYoPiFQ7aQbYCrDb/R/+ieT7mYdjS/7McPxPr50/5MvAbZirj8HGw==}
     engines: {node: '>=14'}
     dependencies:
       '@clerk/types': 3.46.1
