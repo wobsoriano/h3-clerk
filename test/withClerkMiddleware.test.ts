@@ -1,5 +1,5 @@
 import type { App } from 'h3'
-import { createApp, eventHandler, setResponseStatus, toNodeListener } from 'h3'
+import { createApp, eventHandler, toNodeListener } from 'h3'
 import type { SuperTest, Test } from 'supertest'
 import supertest from 'supertest'
 import { withClerkMiddleware } from '../src'
@@ -36,6 +36,8 @@ describe('withClerkMiddleware(options)', () => {
       publishableKey: process.env.CLERK_API_KEY,
       secretKey: process.env.CLERK_SECRET_KEY,
     }))
+
+    app.use('/', eventHandler(event => ({ auth: event.context.auth })))
   })
 
   test('handles signin with Authorization Bearer', async () => {
@@ -45,10 +47,6 @@ describe('withClerkMiddleware(options)', () => {
       isSignedIn: true,
       toAuth: () => 'mockedAuth',
     })
-
-    app.use('/', eventHandler((event) => {
-      return { auth: event.context.auth }
-    }))
 
     const response = await request.get('/')
       .set('Authorization', 'Bearer deadbeef')
@@ -85,10 +83,6 @@ describe('withClerkMiddleware(options)', () => {
       isSignedIn: true,
       toAuth: () => 'mockedAuth',
     })
-
-    app.use('/', eventHandler((event) => {
-      return { auth: event.context.auth }
-    }))
 
     const response = await request.get('/')
       .set('Cookie', '_gcl_au=value1; ko_id=value2; __session=deadbeef; __client_uat=1675692233')
@@ -128,15 +122,6 @@ describe('withClerkMiddleware(options)', () => {
       toAuth: () => 'mockedAuth',
     })
 
-    app.use('/', eventHandler((event) => {
-      if (!event.context.auth) {
-        setResponseStatus(event, 401)
-        return ''
-      }
-
-      return { auth: event.context.auth }
-    }))
-
     const response = await request.get('/').set('Cookie', '_gcl_au=value1; ko_id=value2; __session=deadbeef; __client_uat=1675692233')
     expect(response.status).toEqual(401)
     expect(response.headers['x-clerk-auth-reason']).toEqual('auth-reason')
@@ -154,15 +139,6 @@ describe('withClerkMiddleware(options)', () => {
       toAuth: () => 'mockedAuth',
     })
 
-    app.use('/', eventHandler((event) => {
-      if (!event.context.auth) {
-        setResponseStatus(event, 401)
-        return ''
-      }
-
-      return { auth: event.context.auth }
-    }))
-
     const response = await request.get('/').set('Cookie', '_gcl_au=value1; ko_id=value2; __session=deadbeef; __client_uat=1675692233')
     expect(response.status).toEqual(401)
     expect(response.headers['content-type']).toEqual('text/html')
@@ -178,10 +154,6 @@ describe('withClerkMiddleware(options)', () => {
       isSignedIn: false,
       toAuth: () => 'mockedAuth',
     })
-
-    app.use('/', eventHandler((event) => {
-      return { auth: event.context.auth }
-    }))
 
     const response = await request.get('/').set('Authorization', 'Bearer deadbeef')
     expect(response.body).toEqual({ auth: 'mockedAuth' })
