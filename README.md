@@ -17,7 +17,7 @@ pnpm add h3-clerk
 ## Usage
 
 ```ts
-import { createApp, eventHandler, setResponseStatus } from 'h3'
+import { createApp, createError, eventHandler } from 'h3'
 import { clerkClient, withClerkMiddleware } from 'h3-clerk'
 
 const app = createApp()
@@ -32,10 +32,8 @@ app.use(
   eventHandler(async (event) => {
     const { userId } = event.context.auth
 
-    if (!userId) {
-      setResponseStatus(event, 403)
-      return ''
-    }
+    if (!userId)
+      throw createError({ statusCode: 403 })
 
     const user = await clerkClient.users.getUser(userId)
 
