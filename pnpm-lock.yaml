@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^0.24.0
-        version: 0.24.0
+        specifier: ^0.25.1
+        version: 0.25.1
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^0.39.7
@@ -176,21 +176,22 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
-  /@clerk/backend@0.24.0:
-    resolution: {integrity: sha512-An1VKCFlFTROUYuELDwY5B6FmbVmIDuW837t0JfgbOLBYo1yoUgXZHB/wttGISaHt+CiOs1+CAI2U3iHxkaxhA==}
+  /@clerk/backend@0.25.1:
+    resolution: {integrity: sha512-941vKzgQ/XnY/YzUx6ZPpe8dEoHlVZ/mUDiXxdwYecwyZ3PHLTh8y+z6m5Imz6HbZ9qoQUOb/2S315dqt7kjFA==}
     engines: {node: '>=14'}
     dependencies:
-      '@clerk/types': 3.46.1
+      '@clerk/types': 3.48.0
       '@peculiar/webcrypto': 1.4.1
       '@types/node': 16.18.6
+      cookie: 0.5.0
       deepmerge: 4.2.2
       node-fetch-native: 1.0.1
       snakecase-keys: 5.4.4
       tslib: 2.4.1
     dev: false
 
-  /@clerk/types@3.46.1:
-    resolution: {integrity: sha512-IA/iSXJJZym4Z6f9OcT9OJayK2opVhxUVJky15aY4iVsJCPScgApBuuzC7N4vfXwA6RI/wGebFbvmsEQ3oI/UA==}
+  /@clerk/types@3.48.0:
+    resolution: {integrity: sha512-whs7s8E5PNBOCy14a80w723dAOStD0cnqY5u7AEq7gGuHuiIYyo1BfqIoIYRh3Oi3Z2cWnFmFNVDN+lHiJ1dFA==}
     engines: {node: '>=14'}
     dependencies:
       csstype: 3.1.1
@@ -1412,6 +1413,11 @@ packages:
   /cookie-es@1.0.0:
     resolution: {integrity: sha512-mWYvfOLrfEc996hlKcdABeIiPHUPC6DM2QYZdGGOvhOTbA3tjm2eBwqlJpoFdjC89NI4Qt6h0Pu06Mp+1Pj5OQ==}
     dev: true
+
+  /cookie@0.5.0:
+    resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
+    engines: {node: '>= 0.6'}
+    dev: false
 
   /cookiejar@2.1.4:
     resolution: {integrity: sha512-LDx6oHrK+PhzLKJU9j5S7/Y3jM/mUHvD/DeI1WQmJn652iPC5Y4TBzC9l+5OMOXlyTTA+SmVUPm0HQUwpD5Jqw==}
