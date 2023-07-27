@@ -107,6 +107,7 @@ describe('withClerkMiddleware(options)', () => {
     })
 
     const response = await request.get('/').set('Cookie', '_gcl_au=value1; ko_id=value2; __session=deadbeef; __client_uat=1675692233')
+
     expect(response.status).toEqual(401)
     expect(response.headers['x-clerk-auth-reason']).toEqual('auth-reason')
     expect(response.headers['x-clerk-auth-message']).toEqual('auth-message')
@@ -115,20 +116,22 @@ describe('withClerkMiddleware(options)', () => {
 
   test('handles interstitial case by terminating the request with interstitial html page and 401 http code', async () => {
     authenticateRequestMock.mockResolvedValue({
-      isUnknown: true,
-      isInterstitial: false,
+      isUnknown: false,
+      isInterstitial: true,
       isSignedIn: false,
       reason: 'auth-reason',
       message: 'auth-message',
       toAuth: () => 'mockedAuth',
     })
+    localInterstitialMock.mockReturnValue('<html><body>Interstitial</body></html>')
 
     const response = await request.get('/').set('Cookie', '_gcl_au=value1; ko_id=value2; __session=deadbeef; __client_uat=1675692233')
+
     expect(response.status).toEqual(401)
     expect(response.headers['content-type']).toEqual('text/html')
     expect(response.headers['x-clerk-auth-reason']).toEqual('auth-reason')
     expect(response.headers['x-clerk-auth-message']).toEqual('auth-message')
-    expect(response.text).toEqual('')
+    expect(response.text).toEqual('<html><body>Interstitial</body></html>')
   })
 
   test('handles signout case by populating the event.context.auth', async () => {
@@ -140,6 +143,8 @@ describe('withClerkMiddleware(options)', () => {
     })
 
     const response = await request.get('/').set('Authorization', 'Bearer deadbeef')
+
+    expect(response.statusCode).toBe(200)
     expect(response.body).toEqual({ auth: 'mockedAuth' })
     expect(authenticateRequestMock).toBeCalledWith(
       expect.objectContaining({
