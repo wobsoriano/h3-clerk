@@ -23,11 +23,7 @@ export function withClerkMiddleware(options: ClerkH3Options) {
       apiKey: constants.API_KEY,
       frontendApi: constants.FRONTEND_API,
       request: createIsomorphicRequest((Request, Headers) => {
-        const requestHeaders = Object.keys(getHeaders(event)).reduce(
-          (acc, key) => Object.assign(acc, { [key]: getHeaders(event)[key] }),
-          {},
-        )
-
+        const requestHeaders = getHeaders(event) as Record<string, string>
         const reqUrl = getRequestURL(event)
         const headers = new Headers(requestHeaders)
 
