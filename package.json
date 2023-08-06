@@ -46,7 +46,7 @@
     "h3": "^1.7.0"
   },
   "dependencies": {
-    "@clerk/backend": "^0.26.0"
+    "@clerk/backend": "^0.27.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.8",
