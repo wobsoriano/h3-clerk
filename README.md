@@ -16,19 +16,46 @@ pnpm add h3-clerk
 
 ## Usage
 
+### withClerkAuth
+
+Attaches an auth object to the event context when an authenticated request is made.
+
 ```ts
 import { createApp, createError, eventHandler } from 'h3'
-import { clerkClient, withClerkMiddleware } from 'h3-clerk'
+import { clerkClient, withClerkAuth } from 'h3-clerk'
 
 const app = createApp()
 
-app.use(withClerkMiddleware({
-  publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
-  secretKey: process.env.CLERK_SECRET_KEY,
-}))
+app.use(
+  '/protected-endpoint',
+  withClerkAuth(async (event) => {
+    const { userId } = event.context.auth
+
+    if (!userId)
+      throw createError({ statusCode: 403 })
+
+    const user = await clerkClient.users.getUser(userId)
+
+    return { user }
+  })
+)
+```
+
+### withClerkMiddleware
+
+A global middleware that attaches an auth object to all requests.
+
+This middleware is unsatable and causes infinite loop. Prefer `withClerkAuth` instead.
+
+```ts
+import { clerkClient, withClerkAuth } from 'h3-clerk'
+
+const app = createApp()
+
+app.use(withClerkMiddleware())
 
 app.use(
-  '/private',
+  '/protected-endpoint',
   eventHandler(async (event) => {
     const { userId } = event.context.auth
 

@@ -4,17 +4,18 @@
  * Credits to the Clerk team.
  * https://github.com/clerkinc/javascript/blob/main/packages/fastify/src/withClerkMiddleware.ts
  */
+
 import { type ClerkOptions, type SignedInAuthObject, type SignedOutAuthObject, createIsomorphicRequest } from '@clerk/backend'
-import { eventHandler, getHeaders, getMethod, getRequestURL, setResponseHeaders, setResponseStatus } from 'h3'
+import { type EventHandler, eventHandler, getHeaders, getMethod, getRequestURL, setResponseHeaders, setResponseStatus } from 'h3'
 import * as constants from './constants'
 import { clerkClient } from './clerkClient'
 
 export type ClerkH3Options = Omit<ClerkOptions, 'apiKey'>
 
-export function withClerkMiddleware(options: ClerkH3Options) {
+function handleClerkRequest(options?: ClerkH3Options, handler?: EventHandler) {
   return eventHandler(async (event) => {
-    const secretKey = options.secretKey || constants.SECRET_KEY
-    const publishableKey = options.publishableKey || constants.PUBLISHABLE_KEY
+    const secretKey = options?.secretKey ?? constants.SECRET_KEY
+    const publishableKey = options?.publishableKey ?? constants.PUBLISHABLE_KEY
 
     const requestState = await clerkClient.authenticateRequest({
       ...options,
@@ -59,7 +60,18 @@ export function withClerkMiddleware(options: ClerkH3Options) {
     }
 
     event.context.auth = requestState.toAuth()
+
+    if (handler)
+      return handler(event)
   })
+}
+
+export function withClerkMiddleware(options: ClerkH3Options) {
+  return handleClerkRequest(options)
+}
+
+export function withClerkAuth<T>(handler: EventHandler<T>, options?: ClerkH3Options) {
+  return handleClerkRequest(options, handler)
 }
 
 declare module 'h3' {

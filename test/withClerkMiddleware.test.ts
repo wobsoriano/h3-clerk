@@ -2,7 +2,7 @@ import type { App } from 'h3'
 import { createApp, eventHandler, toNodeListener } from 'h3'
 import type { SuperTest, Test } from 'supertest'
 import supertest from 'supertest'
-import { withClerkMiddleware } from '../src'
+import { withClerkAuth } from '../src/withClerkMiddleware'
 
 const authenticateRequestMock = vi.fn()
 const localInterstitialMock = vi.fn()
@@ -32,12 +32,12 @@ describe('withClerkMiddleware(options)', () => {
     app = createApp({ debug: false })
     request = supertest(toNodeListener(app))
 
-    app.use(withClerkMiddleware({
-      publishableKey: process.env.CLERK_API_KEY,
-      secretKey: process.env.CLERK_SECRET_KEY,
-    }))
+    // app.use(withClerkMiddleware({
+    //   publishableKey: process.env.CLERK_API_KEY,
+    //   secretKey: process.env.CLERK_SECRET_KEY,
+    // }))
 
-    app.use('/', eventHandler(event => ({ auth: event.context.auth })))
+    app.use('/', withClerkAuth(eventHandler(event => ({ auth: event.context.auth }))))
   })
 
   test('handles signin with Authorization Bearer', async () => {
