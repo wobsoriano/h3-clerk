@@ -45,7 +45,7 @@ app.use(
 
 A global middleware that attaches an auth object to all requests.
 
-This middleware is unsatable and causes infinite loop. Prefer `withClerkAuth` instead.
+This middleware is unstable and causes [infinite loop](https://github.com/clerkinc/javascript/issues/1436). Prefer `withClerkAuth` instead.
 
 ```ts
 import { clerkClient, withClerkAuth } from 'h3-clerk'
