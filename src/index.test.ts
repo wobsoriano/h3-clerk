@@ -1,5 +1,5 @@
 import type { App } from 'h3'
-import { createApp, toNodeListener } from 'h3'
+import { createApp, eventHandler, toNodeListener } from 'h3'
 import type { SuperTest, Test } from 'supertest'
 import supertest from 'supertest'
 import { withClerkAuth, withClerkMiddleware } from '.'
@@ -29,13 +29,12 @@ describe('withClerkMiddleware(options)', () => {
   let request: SuperTest<Test>
 
   beforeEach(() => {
-    app = createApp()
-    app.use(withClerkMiddleware())
+    app = createApp().use(withClerkMiddleware())
     request = supertest(toNodeListener(app))
   })
 
   it('should add auth context', async () => {
-    app.use('/', withClerkAuth((event) => {
+    app.use('/', eventHandler((event) => {
       expect(event.context.auth).toBeTypeOf('object')
       return '200'
     }))

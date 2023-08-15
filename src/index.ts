@@ -4,14 +4,20 @@ import { eventHandler, fromNodeMiddleware } from 'h3'
 import type { EventHandler, NodeMiddleware } from 'h3'
 
 export function withClerkMiddleware(options?: ClerkOptions) {
-  return fromNodeMiddleware(ClerkExpressWithAuth(options) as NodeMiddleware)
+  return eventHandler({
+    onRequest: [fromNodeMiddleware(ClerkExpressWithAuth(options) as NodeMiddleware)],
+    async handler(event) {
+      // @ts-expect-error: Clerk Node attaches auth object to req.auth
+      event.context.auth = event.node.req.auth
+    },
+  })
 }
 
 export function withClerkAuth(handler: EventHandler, options?: ClerkOptions) {
   return eventHandler({
     onRequest: [fromNodeMiddleware(ClerkExpressWithAuth(options) as NodeMiddleware)],
     async handler(event) {
-      // @ts-expect-error: clerk node attaches auth object to req.auth
+      // @ts-expect-error: Clerk Node attaches auth object to req.auth
       event.context.auth = event.node.req.auth
 
       return handler(event)
