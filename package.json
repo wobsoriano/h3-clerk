@@ -1,6 +1,6 @@
 {
   "name": "h3-clerk",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "packageManager": "pnpm@8.6.11",
   "description": "Unofficial Clerk middleware for H3.",
   "author": "Robert Soriano <sorianorobertc@gmail.com>",
