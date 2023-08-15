@@ -37,23 +37,24 @@
     "build": "tsup",
     "lint": "eslint .",
     "prepublishOnly": "pnpm build",
-    "release": "bumpp && npm publish",
+    "release": "changelogen --release && npm publish && git push --follow-tags",
     "test": "vitest",
     "update-deps": "taze -w && pnpm i",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "h3": "^1.7.0"
+    "h3": "^1.8.0"
   },
   "dependencies": {
-    "@clerk/backend": "^0.27.0"
+    "@clerk/backend": "^0.27.0",
+    "@clerk/clerk-sdk-node": "4.12.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.40.0",
     "@types/supertest": "^2.0.12",
-    "bumpp": "^9.1.1",
+    "changelogen": "^0.5.4",
     "eslint": "^8.46.0",
-    "h3": "^1.7.1",
+    "h3": "^1.8.0",
     "supertest": "^6.3.3",
     "taze": "^0.11.2",
     "tsup": "7.2.0",
