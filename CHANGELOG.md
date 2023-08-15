@@ -1,9 +1,9 @@
 # Changelog
 
 
-## v0.2.4
+## v0.3.0
 
-[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.2.3...v0.2.4)
+[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.2.3...v0.3.0)
 
 ### 🚀 Enhancements
 
