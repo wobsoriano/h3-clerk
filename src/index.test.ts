@@ -9,9 +9,6 @@ describe('withClerkAuth(options)', () => {
   let request: SuperTest<Test>
 
   beforeEach(() => {
-    vi.clearAllMocks()
-    vi.restoreAllMocks()
-
     app = createApp()
     request = supertest(toNodeListener(app))
   })
@@ -32,9 +29,6 @@ describe('withClerkMiddleware(options)', () => {
   let request: SuperTest<Test>
 
   beforeEach(() => {
-    vi.clearAllMocks()
-    vi.restoreAllMocks()
-
     app = createApp()
     app.use(withClerkMiddleware())
     request = supertest(toNodeListener(app))
