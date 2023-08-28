@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.3.1
+
+[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.0...v0.3.1)
+
+### 💅 Refactors
+
+- Import types from clerk node sdk ([68fce30](https://github.com/wobsoriano/h3-clerk/commit/68fce30))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.3.0
 
 [compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.2.3...v0.3.0)
