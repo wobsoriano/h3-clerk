@@ -3,15 +3,17 @@ import { eventHandler, fromNodeMiddleware } from 'h3'
 import type { H3Event, EventHandler, NodeMiddleware } from 'h3'
 import type { ClerkOptions, SignedInAuthObject, SignedOutAuthObject } from '@clerk/clerk-sdk-node'
 
-// needed until https://github.com/clerkinc/javascript/issues/1740 is resolved
-const preventCrossOriginReferer = (event: H3Event) => {
-  if (process.dev) delete event.node.req.headers.referer
+// needed until https://github.com/nuxt/nuxt/issues/23348 is resolved
+const fixProtoHeaderInDevMode = (event: H3Event) => {
+  if (process.dev) {
+    event.node.req.headers['x-forwarded-proto'] = getRequestProtocol(event)
+  }
 }
 
 export function withClerkMiddleware(options?: ClerkOptions) {
   return eventHandler({
     onRequest: [
-      preventCrossOriginReferer,
+      fixProtoHeaderInDevMode,
       fromNodeMiddleware(ClerkExpressWithAuth(options) as NodeMiddleware),
     ],
     async handler(event) {
@@ -24,7 +26,7 @@ export function withClerkMiddleware(options?: ClerkOptions) {
 export function withClerkAuth(handler: EventHandler, options?: ClerkOptions) {
   return eventHandler({
     onRequest: [
-      preventCrossOriginReferer,
+      fixProtoHeaderInDevMode,
       fromNodeMiddleware(ClerkExpressWithAuth(options) as NodeMiddleware),
     ],
     async handler(event) {
