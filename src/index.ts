@@ -5,7 +5,7 @@ import type { ClerkOptions, SignedInAuthObject, SignedOutAuthObject } from '@cle
 
 // needed until https://github.com/nuxt/nuxt/issues/23348 is resolved
 const fixProtoHeaderInDevMode = (event: H3Event) => {
-  if (process.dev) {
+  if (process.env.NODE_ENV === 'development') {
     event.node.req.headers['x-forwarded-proto'] = getRequestProtocol(event)
   }
 }
