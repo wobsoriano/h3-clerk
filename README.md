@@ -11,19 +11,32 @@ To use this middleware you should first create a Clerk application and retrieve 
 ### Installation
 
 ```bash
-pnpm add h3-clerk
+npm install h3-clerk
 ```
 
 ## Usage
 
-Attaches an auth object to the event context when an authenticated request is made.
-
 ```ts
 import { createApp, createError, eventHandler } from 'h3'
-import { clerkClient, withClerkAuth } from 'h3-clerk'
+import { clerkClient, withClerkAuth, withClerkMiddleware } from 'h3-clerk'
 
 const app = createApp()
 
+// For all routes
+app.use(withClerkMiddleware())
+app.use('/protected-endpoint', async () => {
+  const { userId } = event.context.auth
+  const { userId } = event.context.auth
+
+  if (!userId)
+    throw createError({ statusCode: 403 })
+
+  const user = await clerkClient.users.getUser(userId)
+
+  return { user }
+})
+
+// For a specific route
 app.use(
   '/protected-endpoint',
   withClerkAuth(async (event) => {
