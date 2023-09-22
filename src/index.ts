@@ -1,13 +1,12 @@
 import { ClerkExpressWithAuth } from '@clerk/clerk-sdk-node'
 import { eventHandler, fromNodeMiddleware, getRequestProtocol } from 'h3'
-import type { H3Event, EventHandler, NodeMiddleware } from 'h3'
+import type { EventHandler, H3Event, NodeMiddleware } from 'h3'
 import type { ClerkOptions, SignedInAuthObject, SignedOutAuthObject } from '@clerk/clerk-sdk-node'
 
 // needed until https://github.com/nuxt/nuxt/issues/23348 is resolved
-const fixProtoHeaderInDevMode = (event: H3Event) => {
-  if (process.env.NODE_ENV === 'development') {
+function fixProtoHeaderInDevMode(event: H3Event) {
+  if (process.env.NODE_ENV === 'development')
     event.node.req.headers['x-forwarded-proto'] = getRequestProtocol(event)
-  }
 }
 
 export function withClerkMiddleware(options?: ClerkOptions) {
