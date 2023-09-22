@@ -1,5 +1,5 @@
 import { ClerkExpressWithAuth } from '@clerk/clerk-sdk-node'
-import { eventHandler, fromNodeMiddleware } from 'h3'
+import { eventHandler, fromNodeMiddleware, getRequestProtocol } from 'h3'
 import type { H3Event, EventHandler, NodeMiddleware } from 'h3'
 import type { ClerkOptions, SignedInAuthObject, SignedOutAuthObject } from '@clerk/clerk-sdk-node'
 
