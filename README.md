@@ -24,8 +24,7 @@ const app = createApp()
 
 // For all routes
 app.use(withClerkMiddleware())
-app.use('/protected-endpoint', async () => {
-  const { userId } = event.context.auth
+app.use('/protected-endpoint', async (event) => {
   const { userId } = event.context.auth
 
   if (!userId)
