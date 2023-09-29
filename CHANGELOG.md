@@ -1,6 +1,33 @@
 # Changelog
 
 
+## v0.3.4
+
+[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.3...v0.3.4)
+
+### 🚀 Enhancements
+
+- **deps:** Bump @clerk/backend to 0.30.0 ([4ac626a](https://github.com/wobsoriano/h3-clerk/commit/4ac626a))
+- **deps:** Bump @clerk/clerk-sdk-node to 4.12.9 ([7b1f01a](https://github.com/wobsoriano/h3-clerk/commit/7b1f01a))
+
+### 🩹 Fixes
+
+- Change ClerkOptions to ClerkMiddlewareOptions ([c552d59](https://github.com/wobsoriano/h3-clerk/commit/c552d59))
+
+### 📖 Documentation
+
+- Update README ([54cfe3a](https://github.com/wobsoriano/h3-clerk/commit/54cfe3a))
+
+### 🤖 CI
+
+- Use bun as runner ([14c5cbf](https://github.com/wobsoriano/h3-clerk/commit/14c5cbf))
+- Remove windows from testing env ([a4d776d](https://github.com/wobsoriano/h3-clerk/commit/a4d776d))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+- Vancegillies <vance.gillies@sensand.com>
+
 ## v0.3.3
 
 [compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.2...v0.3.3)
