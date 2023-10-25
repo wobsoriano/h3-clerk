@@ -9,8 +9,8 @@ dependencies:
     specifier: ^0.31.3
     version: 0.31.3(react@18.2.0)
   '@clerk/clerk-sdk-node':
-    specifier: 4.12.15-snapshot.vf9232b3
-    version: 4.12.15-snapshot.vf9232b3(react@18.2.0)
+    specifier: 4.12.16
+    version: 4.12.16(react@18.2.0)
 
 devDependencies:
   '@antfu/eslint-config':
@@ -186,23 +186,6 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
-  /@clerk/backend@0.31.2-snapshot.vf9232b3(react@18.2.0):
-    resolution: {integrity: sha512-gFv8cEu8zkRD4mVmR+fuW+KfK5K3I3MOUGT8GCP8utyVYf03Ieiarhk0TJC46N9ek8Kx7Rexqw7E/S7vJhSOOg==}
-    engines: {node: '>=14'}
-    dependencies:
-      '@clerk/shared': 1.0.0-snapshot.vf9232b3(react@18.2.0)
-      '@clerk/types': 3.56.1-snapshot.vf9232b3
-      '@peculiar/webcrypto': 1.4.1
-      '@types/node': 16.18.6
-      cookie: 0.5.0
-      deepmerge: 4.2.2
-      node-fetch-native: 1.0.1
-      snakecase-keys: 5.4.4
-      tslib: 2.4.1
-    transitivePeerDependencies:
-      - react
-    dev: false
-
   /@clerk/backend@0.31.3(react@18.2.0):
     resolution: {integrity: sha512-0SbpwG7q6eEnVH/Shj86LFDM/zvVT6ToVodZLKawPxwzMqXBhrSNMdPQn9Al7w2522NesL/apR64npY7FnI2vA==}
     engines: {node: '>=14'}
@@ -220,13 +203,13 @@ packages:
       - react
     dev: false
 
-  /@clerk/clerk-sdk-node@4.12.15-snapshot.vf9232b3(react@18.2.0):
-    resolution: {integrity: sha512-zt6Nk/fPnRffRT+JxVYhOOtWVjpRXMmXlJhNu34qQwBt16hMZ5ud0ihPy9jq7dXAAV+uSr3vrKw4OZaRpFNSdQ==}
+  /@clerk/clerk-sdk-node@4.12.16(react@18.2.0):
+    resolution: {integrity: sha512-mstF9j0sbeq4leru2UJacTI814fARt3RkVc6AB6hYQdOE0bs5P1pb1akrsK86eFs2Ej2cDpcOsdppirpe0qe/g==}
     engines: {node: '>=14'}
     dependencies:
-      '@clerk/backend': 0.31.2-snapshot.vf9232b3(react@18.2.0)
-      '@clerk/shared': 1.0.0-snapshot.vf9232b3(react@18.2.0)
-      '@clerk/types': 3.56.1-snapshot.vf9232b3
+      '@clerk/backend': 0.31.3(react@18.2.0)
+      '@clerk/shared': 1.0.0(react@18.2.0)
+      '@clerk/types': 3.57.0
       '@types/cookies': 0.7.7
       '@types/express': 4.17.14
       '@types/node-fetch': 2.6.2
@@ -249,27 +232,6 @@ packages:
       js-cookie: 3.0.1
       react: 18.2.0
       swr: 2.2.0(react@18.2.0)
-    dev: false
-
-  /@clerk/shared@1.0.0-snapshot.vf9232b3(react@18.2.0):
-    resolution: {integrity: sha512-8Hm6mEyZvVhrEbfeCnhMY70BaWZKpgGTjs+khgEhCDm57yrr2oTh6YG2GXQKGBOJkDmkpKxnmoN3YMH5yFSPJA==}
-    peerDependencies:
-      react: '>=16'
-    peerDependenciesMeta:
-      react:
-        optional: true
-    dependencies:
-      glob-to-regexp: 0.4.1
-      js-cookie: 3.0.1
-      react: 18.2.0
-      swr: 2.2.0(react@18.2.0)
-    dev: false
-
-  /@clerk/types@3.56.1-snapshot.vf9232b3:
-    resolution: {integrity: sha512-pOns/kpuPdfNOa32eUpr0KU5e2ZJqhTGrDMqZT6fLUfn5u80DpN1rUjGD4DmPbarU5jHOO4aj0VZPCkqFAJkrA==}
-    engines: {node: '>=14'}
-    dependencies:
-      csstype: 3.1.1
     dev: false
 
   /@clerk/types@3.57.0:
