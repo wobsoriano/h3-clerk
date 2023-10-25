@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.3.6
+
+[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.5...v0.3.6)
+
+### 📦 Build
+
+- **deps:** Bump @clerk/backend to 0.31.3 ([e4ac9a5](https://github.com/wobsoriano/h3-clerk/commit/e4ac9a5))
+- **deps:** Bump @clerk/clerk-sdk-node to 4.12.16 ([2adfa36](https://github.com/wobsoriano/h3-clerk/commit/2adfa36))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.3.5
 
 [compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.4...v0.3.5)
