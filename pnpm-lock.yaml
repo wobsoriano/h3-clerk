@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@clerk/backend':
-    specifier: ^0.31.2
-    version: 0.31.2(react@18.2.0)
+    specifier: ^0.31.3
+    version: 0.31.3(react@18.2.0)
   '@clerk/clerk-sdk-node':
     specifier: 4.12.15-snapshot.vf9232b3
     version: 4.12.15-snapshot.vf9232b3(react@18.2.0)
@@ -186,12 +186,12 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
-  /@clerk/backend@0.31.2(react@18.2.0):
-    resolution: {integrity: sha512-9Nv4em2TghXlXqYxts/ofpmu6MAg+0NW3Y5r9mzTD/stCPf/62aIB681au8rDN6fuf8YDclRhD59T+vvmnimTw==}
+  /@clerk/backend@0.31.2-snapshot.vf9232b3(react@18.2.0):
+    resolution: {integrity: sha512-gFv8cEu8zkRD4mVmR+fuW+KfK5K3I3MOUGT8GCP8utyVYf03Ieiarhk0TJC46N9ek8Kx7Rexqw7E/S7vJhSOOg==}
     engines: {node: '>=14'}
     dependencies:
-      '@clerk/shared': 0.24.5(react@18.2.0)
-      '@clerk/types': 3.56.1
+      '@clerk/shared': 1.0.0-snapshot.vf9232b3(react@18.2.0)
+      '@clerk/types': 3.56.1-snapshot.vf9232b3
       '@peculiar/webcrypto': 1.4.1
       '@types/node': 16.18.6
       cookie: 0.5.0
@@ -203,12 +203,12 @@ packages:
       - react
     dev: false
 
-  /@clerk/backend@0.31.2-snapshot.vf9232b3(react@18.2.0):
-    resolution: {integrity: sha512-gFv8cEu8zkRD4mVmR+fuW+KfK5K3I3MOUGT8GCP8utyVYf03Ieiarhk0TJC46N9ek8Kx7Rexqw7E/S7vJhSOOg==}
+  /@clerk/backend@0.31.3(react@18.2.0):
+    resolution: {integrity: sha512-0SbpwG7q6eEnVH/Shj86LFDM/zvVT6ToVodZLKawPxwzMqXBhrSNMdPQn9Al7w2522NesL/apR64npY7FnI2vA==}
     engines: {node: '>=14'}
     dependencies:
-      '@clerk/shared': 1.0.0-snapshot.vf9232b3(react@18.2.0)
-      '@clerk/types': 3.56.1-snapshot.vf9232b3
+      '@clerk/shared': 1.0.0(react@18.2.0)
+      '@clerk/types': 3.57.0
       '@peculiar/webcrypto': 1.4.1
       '@types/node': 16.18.6
       cookie: 0.5.0
@@ -237,8 +237,8 @@ packages:
       - react
     dev: false
 
-  /@clerk/shared@0.24.5(react@18.2.0):
-    resolution: {integrity: sha512-93ZNcAS0S3iH4s5lE9e+zroF3/Chc0pCsVm8P9kinA3y/IornidaGKhezMFgJLdJkCOxg7/QiWwdYbQpB8HVBw==}
+  /@clerk/shared@1.0.0(react@18.2.0):
+    resolution: {integrity: sha512-KsI4bp7T0ql6byiXeiRf/qgCNuJRhrFPdZ7gLxY4zQpe9MRZT5FsX5miYVklkfLGVw9UT0XxYo91zcT2cRmRig==}
     peerDependencies:
       react: '>=16'
     peerDependenciesMeta:
@@ -265,15 +265,15 @@ packages:
       swr: 2.2.0(react@18.2.0)
     dev: false
 
-  /@clerk/types@3.56.1:
-    resolution: {integrity: sha512-w/LKUH/PtB0nfQ6xtfh08/HyRLcIhvp1Vl3tx67Rvj7HdgDb5r2a2wbqsVanQZkdhE71WpIG36BRPhNWF4W2Bg==}
+  /@clerk/types@3.56.1-snapshot.vf9232b3:
+    resolution: {integrity: sha512-pOns/kpuPdfNOa32eUpr0KU5e2ZJqhTGrDMqZT6fLUfn5u80DpN1rUjGD4DmPbarU5jHOO4aj0VZPCkqFAJkrA==}
     engines: {node: '>=14'}
     dependencies:
       csstype: 3.1.1
     dev: false
 
-  /@clerk/types@3.56.1-snapshot.vf9232b3:
-    resolution: {integrity: sha512-pOns/kpuPdfNOa32eUpr0KU5e2ZJqhTGrDMqZT6fLUfn5u80DpN1rUjGD4DmPbarU5jHOO4aj0VZPCkqFAJkrA==}
+  /@clerk/types@3.57.0:
+    resolution: {integrity: sha512-i+XqgqRbcMn5gMwWGiA3W6lCTSDYdonDAgoJgNyRemQg7Zesnbd4OoJZfqyW6vN3wvD9Bl+gMb7gQ3VquNWUOA==}
     engines: {node: '>=14'}
     dependencies:
       csstype: 3.1.1
