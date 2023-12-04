@@ -9,10 +9,17 @@ function fixProtoHeaderInDevMode(event: H3Event) {
     event.node.req.headers['x-forwarded-proto'] = getRequestProtocol(event)
 }
 
-export function withClerkMiddleware(options?: ClerkMiddlewareOptions) {
+type H3ClerkMiddlewareOptions = ClerkMiddlewareOptions & {
+  /**
+   * Adjusts the `x-forwarded-proto` header in development mode to match the protocol of the request. Temporary hacky fix to https://github.com/nuxt/nuxt/issues/23348.
+   */
+  adjustProtoHeaderInDev?: boolean
+}
+
+export function withClerkMiddleware(options: H3ClerkMiddlewareOptions = { adjustProtoHeaderInDev: true }) {
   return eventHandler({
     onRequest: [
-      fixProtoHeaderInDevMode,
+      options.adjustProtoHeaderInDev ? fixProtoHeaderInDevMode : () => {},
       fromNodeMiddleware(ClerkExpressWithAuth(options) as NodeMiddleware),
     ],
     async handler(event) {
@@ -22,10 +29,10 @@ export function withClerkMiddleware(options?: ClerkMiddlewareOptions) {
   })
 }
 
-export function withClerkAuth(handler: EventHandler, options?: ClerkMiddlewareOptions) {
+export function withClerkAuth(handler: EventHandler, options: H3ClerkMiddlewareOptions = { adjustProtoHeaderInDev: true }) {
   return eventHandler({
     onRequest: [
-      fixProtoHeaderInDevMode,
+      options?.adjustProtoHeaderInDev ? fixProtoHeaderInDevMode : () => {},
       fromNodeMiddleware(ClerkExpressWithAuth(options) as NodeMiddleware),
     ],
     async handler(event) {
