@@ -4,11 +4,11 @@
     "lib": ["esnext", "DOM"],
     "module": "esnext",
     "moduleResolution": "node",
-    "types": ["vitest/globals"],
     "resolveJsonModule": true,
-    "esModuleInterop": true,
+    "types": ["vitest/globals"],
     "strict": true,
     "strictNullChecks": true,
+    "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   }
