@@ -1,6 +1,31 @@
 # Changelog
 
 
+## v0.3.8
+
+[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.7...v0.3.8)
+
+### 🚀 Enhancements
+
+- Allow disabling hacky proto header in dev fix ([881b42a](https://github.com/wobsoriano/h3-clerk/commit/881b42a))
+
+### 📖 Documentation
+
+- Update readme ([d7ce359](https://github.com/wobsoriano/h3-clerk/commit/d7ce359))
+
+### 📦 Build
+
+- **deps:** Bump @clerk/backend to 0.34.2 ([93a23c0](https://github.com/wobsoriano/h3-clerk/commit/93a23c0))
+- **deps:** Bump @clerk/clerk-sdk-node to 4.12.22 ([c7be15c](https://github.com/wobsoriano/h3-clerk/commit/c7be15c))
+
+### 🎨 Styles
+
+- Switch to eslint flat config, bump local deps ([dd53a74](https://github.com/wobsoriano/h3-clerk/commit/dd53a74))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.3.7
 
 [compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.6...v0.3.7)
