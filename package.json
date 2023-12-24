@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@clerk/backend": "^0.37.0",
-    "@clerk/clerk-sdk-node": "4.12.22"
+    "@clerk/clerk-sdk-node": "^4.13.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.3.1",
