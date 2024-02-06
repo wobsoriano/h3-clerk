@@ -46,7 +46,7 @@
     "h3": "^1.8.0"
   },
   "dependencies": {
-    "@clerk/backend": "^0.37.0",
+    "@clerk/backend": "^0.38.0",
     "@clerk/clerk-sdk-node": "^4.13.4"
   },
   "devDependencies": {
