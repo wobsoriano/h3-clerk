@@ -1,12 +1,13 @@
 import type { App } from 'h3'
 import { createApp, eventHandler, toNodeListener } from 'h3'
-import type { SuperTest, Test } from 'supertest'
+import type { Test } from 'supertest'
 import supertest from 'supertest'
+import type TestAgent from 'supertest/lib/agent'
 import { withClerkAuth, withClerkMiddleware } from '.'
 
 describe('withClerkAuth(options)', () => {
   let app: App
-  let request: SuperTest<Test>
+  let request: TestAgent<Test>
 
   beforeEach(() => {
     app = createApp()
@@ -26,7 +27,7 @@ describe('withClerkAuth(options)', () => {
 
 describe('withClerkMiddleware(options)', () => {
   let app: App
-  let request: SuperTest<Test>
+  let request: TestAgent<Test>
 
   beforeEach(() => {
     app = createApp().use(withClerkMiddleware())
