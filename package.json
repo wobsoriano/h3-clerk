@@ -1,7 +1,7 @@
 {
   "name": "h3-clerk",
   "version": "0.3.8",
-  "packageManager": "pnpm@8.12.1",
+  "packageManager": "pnpm@8.15.1",
   "description": "Unofficial Clerk middleware for H3.",
   "author": "Robert Soriano <sorianorobertc@gmail.com>",
   "license": "MIT",
@@ -50,17 +50,17 @@
     "@clerk/clerk-sdk-node": "^4.13.8"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.4.6",
-    "@types/supertest": "^6.0.1",
+    "@antfu/eslint-config": "^2.6.4",
+    "@types/supertest": "^6.0.2",
     "changelogen": "^0.5.5",
     "eslint": "^8.56.0",
     "eslint-plugin-import": "^2.29.1",
-    "h3": "^1.9.0",
-    "supertest": "^6.3.3",
-    "taze": "^0.13.0",
+    "h3": "^1.10.1",
+    "supertest": "^6.3.4",
+    "taze": "^0.13.2",
     "tsup": "8.0.1",
     "typescript": "^5.3.3",
-    "vitest": "^1.1.0",
+    "vitest": "^1.2.2",
     "vitest-fetch-mock": "^0.2.2"
   }
 }
