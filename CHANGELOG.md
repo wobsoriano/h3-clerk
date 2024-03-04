@@ -1,6 +1,31 @@
 # Changelog
 
 
+## v0.3.9
+
+[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.8...v0.3.9)
+
+### 📦 Build
+
+- **deps:** Bump @clerk/backend to 0.37.0 ([48ede2d](https://github.com/wobsoriano/h3-clerk/commit/48ede2d))
+- **deps:** Bump @clerk/clerk-sdk-node to 4.13.4 ([daf1aa0](https://github.com/wobsoriano/h3-clerk/commit/daf1aa0))
+- **deps:** Bump @clerk/backend to 0.38.0 ([1c8d17b](https://github.com/wobsoriano/h3-clerk/commit/1c8d17b))
+- **deps:** Bump @clerk/clerk-sdk-node to 4.13.8 ([0818f9f](https://github.com/wobsoriano/h3-clerk/commit/0818f9f))
+- **deps:** Bump @clerk/clerk-sdk-node to 4.13.11 ([7390d1e](https://github.com/wobsoriano/h3-clerk/commit/7390d1e))
+- **deps:** Bump @clerk/backend to 0.38.3 ([3df6099](https://github.com/wobsoriano/h3-clerk/commit/3df6099))
+
+### ✅ Tests
+
+- Fix types ([851b939](https://github.com/wobsoriano/h3-clerk/commit/851b939))
+
+### 🎨 Styles
+
+- Eslint fix ([4cf8be6](https://github.com/wobsoriano/h3-clerk/commit/4cf8be6))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.3.8
 
 [compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.7...v0.3.8)
