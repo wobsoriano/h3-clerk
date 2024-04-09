@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.3.10
+
+[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.9...v0.3.10)
+
+### 🏡 Chore
+
+- Export middleware options type ([b7ced5d](https://github.com/wobsoriano/h3-clerk/commit/b7ced5d))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.3.9
 
 [compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.8...v0.3.9)
