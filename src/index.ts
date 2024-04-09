@@ -9,7 +9,7 @@ function fixProtoHeaderInDevMode(event: H3Event) {
     event.node.req.headers['x-forwarded-proto'] = getRequestProtocol(event)
 }
 
-type H3ClerkMiddlewareOptions = ClerkMiddlewareOptions & {
+export type H3ClerkMiddlewareOptions = ClerkMiddlewareOptions & {
   /**
    * Adjusts the `x-forwarded-proto` header in development mode to match the protocol of the request. Temporary hacky fix to https://github.com/nuxt/nuxt/issues/23348.
    * Defaults to `false` in the next major release.
