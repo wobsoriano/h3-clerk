@@ -4,5 +4,6 @@ import { vi } from 'vitest'
 const fetchMocker = createFetchMock(vi)
 fetchMocker.enableMocks()
 
-process.env.CLERK_API_KEY = 'TEST_API_KEY'
-process.env.CLERK_SECRET_KEY = 'TEST_API_KEY'
+process.env.CLERK_SECRET_KEY = 'sk_test_....'
+// don't bother, this is for tests only >:)
+process.env.CLERK_PUBLISHABLE_KEY = 'pk_test_dGlnaHQtcmFiYml0LTk0LmNsZXJrLmFjY291bnRzLmRldiQ'
