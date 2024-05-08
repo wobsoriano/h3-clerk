@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v0.4.0
+
+[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.10...v0.4.0)
+
+### 🏡 Chore
+
+- ⚠️  Remove temporary proto header fix ([6d8ff5e](https://github.com/wobsoriano/h3-clerk/commit/6d8ff5e))
+- Bump @clerk/backend to 1.1.1 ([fb874c5](https://github.com/wobsoriano/h3-clerk/commit/fb874c5))
+- Bump @clerk/clerk-sdk-node to 5.0.3 ([b6b116e](https://github.com/wobsoriano/h3-clerk/commit/b6b116e))
+- Remove unused types ([055f3ed](https://github.com/wobsoriano/h3-clerk/commit/055f3ed))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Remove temporary proto header fix ([6d8ff5e](https://github.com/wobsoriano/h3-clerk/commit/6d8ff5e))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.3.10
 
 [compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.9...v0.3.10)
