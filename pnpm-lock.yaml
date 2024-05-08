@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^0.38.3
-        version: 0.38.3(react@18.2.0)
+        specifier: ^1.1.1
+        version: 1.1.1(react@18.2.0)
       '@clerk/clerk-sdk-node':
         specifier: ^4.13.11
         version: 4.13.11(react@18.2.0)
@@ -148,6 +148,10 @@ packages:
     resolution: {integrity: sha512-k14WRljVNETpIYrt99MBP/Zd7KEwkudQKSCEMatQbiRkWgrpwDWE8Czv+JzF1J7sdMiicBI+p2ph9biX1EOFzw==}
     engines: {node: '>=14'}
 
+  '@clerk/backend@1.1.1':
+    resolution: {integrity: sha512-6r2SPtO5TB53OiGwexLP19LvVoUO+Nz7KlE4US1uposaT2X1+enRtA0LD9DwJnv1YJKxnPXVkwiuqYYlGysusw==}
+    engines: {node: '>=18.17.0'}
+
   '@clerk/clerk-sdk-node@4.13.11':
     resolution: {integrity: sha512-6CiRx61SW0B7i+4STlID537LvwFJvNGWxxQZY96OPHQnvYGYsp+9PdEyY4zaQiyLQBLYJt1+uc7VsdSYY5Omww==}
     engines: {node: '>=14'}
@@ -158,6 +162,18 @@ packages:
       react: '>=16'
     peerDependenciesMeta:
       react:
+        optional: true
+
+  '@clerk/shared@2.0.1':
+    resolution: {integrity: sha512-iRjvWCGVzcN5vi9O3+/bEbA22TegxlnHJJE1a6989OFeeXqSKFqmYwDrvM48umJrbvX5cMbKEgctSVXT2IOgCw==}
+    engines: {node: '>=18.17.0'}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
         optional: true
 
   '@clerk/types@3.62.1':
@@ -2513,6 +2529,9 @@ packages:
   std-env@3.6.0:
     resolution: {integrity: sha512-aFZ19IgVmhdB2uX599ve2kE6BIE3YMnQ6Gp6BURhW/oIzpXGKr878TQfAQZn1+i0Flcc/UKUy1gOlcfaUBCryg==}
 
+  std-env@3.7.0:
+    resolution: {integrity: sha512-JPbdCEQLj1w5GilpiHAx3qJvFndqybBysA3qUOnznweH4QbNYUsW/ea8QzSrnh0vNsezMMw5bcVool8lM0gwzg==}
+
   string-argv@0.3.2:
     resolution: {integrity: sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==}
     engines: {node: '>=0.6.19'}
@@ -3048,6 +3067,16 @@ snapshots:
     transitivePeerDependencies:
       - react
 
+  '@clerk/backend@1.1.1(react@18.2.0)':
+    dependencies:
+      '@clerk/shared': 2.0.1(react@18.2.0)
+      cookie: 0.5.0
+      snakecase-keys: 5.4.4
+      tslib: 2.4.1
+    transitivePeerDependencies:
+      - react
+      - react-dom
+
   '@clerk/clerk-sdk-node@4.13.11(react@18.2.0)':
     dependencies:
       '@clerk/backend': 0.38.3(react@18.2.0)
@@ -3066,6 +3095,15 @@ snapshots:
     dependencies:
       glob-to-regexp: 0.4.1
       js-cookie: 3.0.1
+      swr: 2.2.0(react@18.2.0)
+    optionalDependencies:
+      react: 18.2.0
+
+  '@clerk/shared@2.0.1(react@18.2.0)':
+    dependencies:
+      glob-to-regexp: 0.4.1
+      js-cookie: 3.0.1
+      std-env: 3.7.0
       swr: 2.2.0(react@18.2.0)
     optionalDependencies:
       react: 18.2.0
@@ -5624,6 +5662,8 @@ snapshots:
   std-env@3.4.3: {}
 
   std-env@3.6.0: {}
+
+  std-env@3.7.0: {}
 
   string-argv@0.3.2: {}
 
