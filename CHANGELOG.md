@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.1
+
+[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.4.0...v0.4.1)
+
+### 🩹 Fixes
+
+- Hotfix for express status missing function ([356f67b](https://github.com/wobsoriano/h3-clerk/commit/356f67b))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.4.0
 
 [compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.3.10...v0.4.0)
