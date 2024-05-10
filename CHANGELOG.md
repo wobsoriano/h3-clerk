@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v0.4.2
+
+[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.4.1...v0.4.2)
+
+### 🩹 Fixes
+
+- Auth types ([6e8ab08](https://github.com/wobsoriano/h3-clerk/commit/6e8ab08))
+
+### 🏡 Chore
+
+- Remove unused import ([e355a9f](https://github.com/wobsoriano/h3-clerk/commit/e355a9f))
+- Bump @clerk/backend to 1.1.2 ([4b56700](https://github.com/wobsoriano/h3-clerk/commit/4b56700))
+- Bump @clerk/clerk-sdk-node to 5.0.4 ([567ec7d](https://github.com/wobsoriano/h3-clerk/commit/567ec7d))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.4.1
 
 [compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.4.0...v0.4.1)
