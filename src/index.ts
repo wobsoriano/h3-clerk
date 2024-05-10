@@ -2,7 +2,7 @@ import { ClerkExpressWithAuth } from '@clerk/clerk-sdk-node'
 import { eventHandler, fromNodeMiddleware } from 'h3'
 import type { EventHandler } from 'h3'
 import type { ClerkMiddlewareOptions } from '@clerk/clerk-sdk-node'
-import type { SignedInAuthObject, SignedOutAuthObject } from '@clerk/backend/dist/internal'
+import type { SignedInAuthObject, SignedOutAuthObject } from '@clerk/backend/internal'
 
 function patchResponseStatus() {
   return eventHandler((event) => {
