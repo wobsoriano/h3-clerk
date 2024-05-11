@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.3
+
+[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.4.2...v0.4.3)
+
+### 🏡 Chore
+
+- Add getAuth helper ([6ba5b02](https://github.com/wobsoriano/h3-clerk/commit/6ba5b02))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.4.2
 
 [compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.4.1...v0.4.2)
