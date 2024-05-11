@@ -1,8 +1,9 @@
 import { ClerkExpressWithAuth } from '@clerk/clerk-sdk-node'
 import { eventHandler, fromNodeMiddleware } from 'h3'
-import type { EventHandler } from 'h3'
+import type { EventHandler, H3Event } from 'h3'
 import type { ClerkMiddlewareOptions } from '@clerk/clerk-sdk-node'
 import type { SignedInAuthObject, SignedOutAuthObject } from '@clerk/backend/internal'
+import { middlewareRegistrationRequired } from './errors'
 
 function patchResponseStatus() {
   return eventHandler((event) => {
@@ -41,6 +42,13 @@ export function withClerkAuth(handler: EventHandler, options?: ClerkMiddlewareOp
       return handler(event)
     },
   })
+}
+
+export function getAuth(event: H3Event) {
+  if (!event.context.auth)
+    throw new Error(middlewareRegistrationRequired)
+
+  return event.context.auth
 }
 
 export * from '@clerk/clerk-sdk-node'
