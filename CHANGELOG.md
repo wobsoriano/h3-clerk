@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.5
+
+[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.4.4...v0.4.5)
+
+### 🏡 Chore
+
+- Add deprecatation notice for withClerkAuth ([79f7e98](https://github.com/wobsoriano/h3-clerk/commit/79f7e98))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.4.4
 
 [compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.4.3...v0.4.4)
