@@ -29,6 +29,9 @@ export function withClerkMiddleware(options?: ClerkMiddlewareOptions) {
   })
 }
 
+/**
+ * @deprecated Use the event handler object syntax instead. See https://h3.unjs.io/guide/event-handler#object-syntax
+ */
 export function withClerkAuth(handler: EventHandler, options?: ClerkMiddlewareOptions) {
   return eventHandler({
     onRequest: [

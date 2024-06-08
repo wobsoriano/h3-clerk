@@ -18,7 +18,7 @@ npm install h3-clerk
 
 ```ts
 import { createApp, createError, eventHandler } from 'h3'
-import { clerkClient, getAuth, withClerkAuth, withClerkMiddleware } from 'h3-clerk'
+import { clerkClient, getAuth, withClerkMiddleware } from 'h3-clerk'
 
 const app = createApp()
 
@@ -35,18 +35,21 @@ app.use('/protected-endpoint', async (event) => {
   return { user }
 })
 
-// For a specific route
+// For a single route
 app.use(
   '/protected-endpoint',
-  withClerkAuth(async (event) => {
-    const { userId } = getAuth(event)
+  eventHandler({
+    onRequest: [withClerkMiddleware()],
+    handler: async (event) => {
+      const { userId } = getAuth(event)
 
-    if (!userId)
-      throw createError({ statusCode: 403 })
+      if (!userId)
+        throw createError({ statusCode: 403 })
 
-    const user = await clerkClient.users.getUser(userId)
+      const user = await clerkClient.users.getUser(userId)
 
-    return { user }
+      return { user }
+    }
   })
 )
 ```
