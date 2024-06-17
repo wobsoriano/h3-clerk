@@ -46,11 +46,11 @@
     "h3": "^1.8.0"
   },
   "dependencies": {
-    "@clerk/backend": "^1.2.2",
-    "@clerk/clerk-sdk-node": "^5.0.10"
+    "@clerk/backend": "^1.2.3",
+    "@clerk/shared": "^2.3.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.20.0",
+    "@antfu/eslint-config": "^2.21.0",
     "@types/supertest": "^6.0.2",
     "changelogen": "^0.5.5",
     "eslint": "^9.4.0",
