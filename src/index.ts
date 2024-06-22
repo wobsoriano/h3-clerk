@@ -1,6 +1,6 @@
 import { ClerkExpressWithAuth } from '@clerk/clerk-sdk-node'
 import { eventHandler, fromNodeMiddleware } from 'h3'
-import type { EventHandler, H3Event } from 'h3'
+import type { H3Event } from 'h3'
 import type { ClerkMiddlewareOptions } from '@clerk/clerk-sdk-node'
 import type { SignedInAuthObject, SignedOutAuthObject } from '@clerk/backend/internal'
 import { middlewareRegistrationRequired } from './errors'
@@ -25,24 +25,6 @@ export function withClerkMiddleware(options?: ClerkMiddlewareOptions) {
     async handler(event) {
       // @ts-expect-error: Clerk Node attaches auth object to req.auth
       event.context.auth = event.node.req.auth
-    },
-  })
-}
-
-/**
- * @deprecated Use the event handler object syntax instead. See https://h3.unjs.io/guide/event-handler#object-syntax
- */
-export function withClerkAuth(handler: EventHandler, options?: ClerkMiddlewareOptions) {
-  return eventHandler({
-    onRequest: [
-      patchResponseStatus(),
-      fromNodeMiddleware(ClerkExpressWithAuth(options)),
-    ],
-    async handler(event) {
-      // @ts-expect-error: Clerk Node attaches auth object to req.auth
-      event.context.auth = event.node.req.auth
-
-      return handler(event)
     },
   })
 }
