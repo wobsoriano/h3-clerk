@@ -15,3 +15,5 @@ import { withClerkMiddleware } from 'h3-clerk'
 const app = createApp()
 app.use(withClerkMiddleware())
 `)
+
+export const handshakeWithoutRedirect = 'Clerk: handshake status without redirect'
