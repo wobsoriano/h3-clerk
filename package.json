@@ -46,7 +46,7 @@
     "h3": "^1.8.0"
   },
   "dependencies": {
-    "@clerk/backend": "^1.2.3",
+    "@clerk/backend": "^1.2.4",
     "@clerk/shared": "^2.3.0"
   },
   "devDependencies": {
