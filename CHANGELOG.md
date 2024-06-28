@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.4.6
+
+[compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.4.5...v0.4.6)
+
+### 🏡 Chore
+
+- Add deprecatation notice for withClerkAuth ([79f7e98](https://github.com/wobsoriano/h3-clerk/commit/79f7e98))
+- **release:** V0.4.5 ([5b6fe2b](https://github.com/wobsoriano/h3-clerk/commit/5b6fe2b))
+- Remove deprecated middleware ([9a91455](https://github.com/wobsoriano/h3-clerk/commit/9a91455))
+- Drop express middleware and use built-in authenticateRequest ([3c1caec](https://github.com/wobsoriano/h3-clerk/commit/3c1caec))
+- Bump @clerk/backend to 1.2.4 ([232cde4](https://github.com/wobsoriano/h3-clerk/commit/232cde4))
+- Bump @clerk/shared to 2.3.1 ([46c49bd](https://github.com/wobsoriano/h3-clerk/commit/46c49bd))
+
+### ❤️ Contributors
+
+- Wobsoriano ([@wobsoriano](http://github.com/wobsoriano))
+
 ## v0.4.5
 
 [compare changes](https://github.com/wobsoriano/h3-clerk/compare/v0.4.4...v0.4.5)
