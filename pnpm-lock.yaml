@@ -12,8 +12,8 @@ importers:
         specifier: ^1.2.4
         version: 1.2.4(react@18.3.1)
       '@clerk/shared':
-        specifier: ^2.3.0
-        version: 2.3.0(react@18.3.1)
+        specifier: ^2.3.1
+        version: 2.3.1(react@18.3.1)
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.21.0
@@ -147,18 +147,6 @@ packages:
     resolution: {integrity: sha512-H6K1kHPaDFM6pBdwDAHh1jWSZxCWhGPzDmqgc7LByjqKS6RZUf3cs5mJkIXyopUpHY7wvwj50vSF0xJ46MEzNA==}
     engines: {node: '>=18.17.0'}
 
-  '@clerk/shared@2.3.0':
-    resolution: {integrity: sha512-V/49MoOrALzpu0BbhYDCcKQYIjrHnhRa7QFho9+4wm94oCJgc9j3N5wxndJwj3Ur/fmIyBnjwMzDAT2nZZj47g==}
-    engines: {node: '>=18.17.0'}
-    peerDependencies:
-      react: '>=18 || >=19.0.0-beta'
-      react-dom: '>=18 || >=19.0.0-beta'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-
   '@clerk/shared@2.3.1':
     resolution: {integrity: sha512-WX7cCViYqkNMnbFfT2B93ykNcSseoYM1obMUynO60VBl9Zi6Epde5tn9VRamhuOdojgPR+DyYkH9AzBpXFYnSg==}
     engines: {node: '>=18.17.0'}
@@ -170,10 +158,6 @@ packages:
         optional: true
       react-dom:
         optional: true
-
-  '@clerk/types@4.6.0':
-    resolution: {integrity: sha512-kowqVGqLfu0Zl2Pteum70MfkGHqBUoHHeR+u2+yWVl1lKHLCiyY1u8ntYBEIolAylBaQNDuRzxyMIDPSxjPE8g==}
-    engines: {node: '>=18.17.0'}
 
   '@clerk/types@4.6.1':
     resolution: {integrity: sha512-QFeNKPYDmTJ88l5QYG0SPwbABk42wRMalW3M/wAtr+wnQxBCXyX2XRZe9h4g2rH1VF+wG4Xe56abeeD+xE4iEw==}
@@ -3066,16 +3050,6 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/shared@2.3.0(react@18.3.1)':
-    dependencies:
-      '@clerk/types': 4.6.0
-      glob-to-regexp: 0.4.1
-      js-cookie: 3.0.5
-      std-env: 3.7.0
-      swr: 2.2.5(react@18.3.1)
-    optionalDependencies:
-      react: 18.3.1
-
   '@clerk/shared@2.3.1(react@18.3.1)':
     dependencies:
       '@clerk/types': 4.6.1
@@ -3085,10 +3059,6 @@ snapshots:
       swr: 2.2.5(react@18.3.1)
     optionalDependencies:
       react: 18.3.1
-
-  '@clerk/types@4.6.0':
-    dependencies:
-      csstype: 3.1.1
 
   '@clerk/types@4.6.1':
     dependencies:
