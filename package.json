@@ -37,7 +37,7 @@
     "build": "tsup",
     "lint": "eslint .",
     "prepublishOnly": "pnpm build",
-    "release": "changelogen --release && npm publish && git push --follow-tags",
+    "release": "changeset publish",
     "test": "vitest",
     "update-deps": "taze -w && pnpm i",
     "typecheck": "tsc --noEmit"
@@ -53,7 +53,6 @@
     "@antfu/eslint-config": "^2.21.2",
     "@changesets/cli": "^2.27.6",
     "@types/supertest": "^6.0.2",
-    "changelogen": "^0.5.5",
     "eslint": "^9.6.0",
     "eslint-plugin-import": "^2.29.1",
     "h3": "^1.12.0",
