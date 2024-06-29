@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.21.2",
+    "@changesets/cli": "^2.27.6",
     "@types/supertest": "^6.0.2",
     "changelogen": "^0.5.5",
     "eslint": "^9.6.0",
