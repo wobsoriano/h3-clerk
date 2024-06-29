@@ -1,5 +1,5 @@
 import type { ClerkOptions } from '@clerk/backend'
-import { eventHandler, toWebRequest } from 'h3'
+import { eventHandler, setResponseHeader, toWebRequest } from 'h3'
 import { AuthStatus, type SignedInAuthObject, type SignedOutAuthObject } from '@clerk/backend/internal'
 import { clerkClient } from './clerkClient'
 import * as constants from './constants'
@@ -22,6 +22,12 @@ export function withClerkMiddleware(options?: ClerkOptions) {
 
     if (requestState.status === AuthStatus.Handshake) {
       throw new Error(handshakeWithoutRedirect)
+    }
+
+    if (requestState.headers) {
+      requestState.headers.forEach((value, key) => {
+        setResponseHeader(event, key, value)
+      })
     }
 
     event.context.auth = requestState.toAuth()
