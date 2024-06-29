@@ -17,6 +17,7 @@ export function withClerkMiddleware(options?: ClerkOptions) {
 
     const locationHeader = requestState.headers.get(constants.Headers.Location)
     if (locationHeader) {
+      // Trigger a handshake redirect
       return new Response(null, { status: 307, headers: requestState.headers })
     }
 
