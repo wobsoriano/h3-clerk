@@ -5,6 +5,9 @@ import { clerkClient } from './clerkClient'
 import * as constants from './constants'
 import { handshakeWithoutRedirect } from './errors'
 
+// eslint-disable-next-line no-console
+console.log('test changeset')
+
 export function withClerkMiddleware(options?: ClerkOptions) {
   return eventHandler(async (event) => {
     const clerkRequest = toWebRequest(event)
