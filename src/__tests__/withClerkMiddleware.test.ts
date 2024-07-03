@@ -1,5 +1,5 @@
 import type { App } from 'h3'
-import { createApp, eventHandler, toNodeListener } from 'h3'
+import { createApp, eventHandler, getQuery, readBody, toNodeListener } from 'h3'
 import type { Test } from 'supertest'
 import supertest from 'supertest'
 import type TestAgent from 'supertest/lib/agent'
@@ -140,5 +140,29 @@ describe('withClerkMiddleware(options)', () => {
         secretKey: 'TEST_SECRET_KEY',
       }),
     )
+  })
+
+  it('should not have problems with h3 utils', async () => {
+    authenticateRequestMock.mockResolvedValueOnce({
+      headers: new Headers(),
+      toAuth: () => 'mockedAuth',
+    })
+
+    app.use('/post', eventHandler(async (event) => {
+      const body = await readBody(event)
+      const query = getQuery(event)
+      return { body, query }
+    }))
+
+    const result = await request.post('/post').send({ user: 'john' }).query({ id: '123' })
+    expect(result.statusCode).toBe(200)
+    expect(result.body).toEqual({
+      body: {
+        user: 'john',
+      },
+      query: {
+        id: '123',
+      },
+    })
   })
 })

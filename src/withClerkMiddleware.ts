@@ -1,6 +1,7 @@
 import type { ClerkOptions } from '@clerk/backend'
-import { eventHandler, setResponseHeader, toWebRequest } from 'h3'
+import { eventHandler, setResponseHeader } from 'h3'
 import { AuthStatus, type SignedInAuthObject, type SignedOutAuthObject } from '@clerk/backend/internal'
+import { toWebRequest } from './utils'
 import { clerkClient } from './clerkClient'
 import * as constants from './constants'
 import { handshakeWithoutRedirect } from './errors'
