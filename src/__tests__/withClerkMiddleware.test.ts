@@ -162,7 +162,7 @@ describe('withClerkMiddleware(options)', () => {
       },
       query: {
         id: '123',
-      }
+      },
     })
   })
 })

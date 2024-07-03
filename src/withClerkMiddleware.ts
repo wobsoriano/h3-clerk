@@ -1,20 +1,10 @@
 import type { ClerkOptions } from '@clerk/backend'
-import type { H3Event } from 'h3'
-import { eventHandler, getRequestHeaders, getRequestProtocol, setResponseHeader } from 'h3'
+import { eventHandler, setResponseHeader } from 'h3'
 import { AuthStatus, type SignedInAuthObject, type SignedOutAuthObject } from '@clerk/backend/internal'
+import { toWebRequest } from './utils'
 import { clerkClient } from './clerkClient'
 import * as constants from './constants'
 import { handshakeWithoutRedirect } from './errors'
-
-function toWebRequest(event: H3Event) {
-  const headers = getRequestHeaders(event) as HeadersInit
-  const protocol = getRequestProtocol(event)
-  const dummyOriginReqUrl = new URL(event.node.req.url || '', `${protocol}://clerk-dummy`)
-  return new Request(dummyOriginReqUrl, {
-    method: event.method,
-    headers: new Headers(headers),
-  })
-}
 
 export function withClerkMiddleware(options?: ClerkOptions) {
   return eventHandler(async (event) => {
