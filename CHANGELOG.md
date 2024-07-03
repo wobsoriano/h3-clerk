@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.8
+
+### Patch Changes
+
+- 5165546: fix: h3 event to web request conversion
+
 ## 0.4.7
 
 ### Patch Changes
