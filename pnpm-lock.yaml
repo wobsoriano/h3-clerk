@@ -11,6 +11,9 @@ importers:
       '@clerk/backend':
         specifier: ^1.4.3
         version: 1.4.3(react@18.3.1)
+      '@clerk/shared':
+        specifier: ^2.4.1
+        version: 2.4.1(react@18.3.1)
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.21.2
