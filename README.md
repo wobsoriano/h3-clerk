@@ -57,11 +57,11 @@ app.use(
 ## TypeScript Shim
 
 ```ts
-import type { SignedInAuthObject, SignedOutAuthObject } from '@clerk/backend/internal'
+import type { AuthObject } from '@clerk/backend/internal'
 
 declare module 'h3' {
   interface H3EventContext {
-    auth: SignedInAuthObject | SignedOutAuthObject
+    auth: AuthObject | null
   }
 }
 ```
