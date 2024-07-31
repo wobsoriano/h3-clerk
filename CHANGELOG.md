@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.9
+
+### Patch Changes
+
+- bf11e0c: Option to opt-out of telemetry
+- bf34654: Bump @clerk/backend to 1.4.3
+
 ## 0.4.8
 
 ### Patch Changes

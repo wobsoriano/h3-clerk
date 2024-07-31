@@ -1,6 +1,6 @@
 {
   "name": "h3-clerk",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "Unofficial Clerk middleware for H3.",
   "author": "Robert Soriano <sorianorobertc@gmail.com>",
   "license": "MIT",
