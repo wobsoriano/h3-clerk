@@ -49,17 +49,17 @@
     "@clerk/shared": "^2.4.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.21.2",
-    "@changesets/cli": "^2.27.6",
+    "@antfu/eslint-config": "^2.24.0",
+    "@changesets/cli": "^2.27.7",
     "@types/supertest": "^6.0.2",
-    "eslint": "^9.6.0",
+    "eslint": "^9.8.0",
     "eslint-plugin-import": "^2.29.1",
     "h3": "^1.12.0",
     "supertest": "^7.0.0",
-    "taze": "^0.13.9",
+    "taze": "^0.16.3",
     "tsup": "8.0.1",
-    "typescript": "^5.5.2",
-    "vitest": "^1.6.0",
-    "vitest-fetch-mock": "^0.2.2"
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5",
+    "vitest-fetch-mock": "^0.3.0"
   }
 }
