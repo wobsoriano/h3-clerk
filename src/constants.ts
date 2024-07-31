@@ -6,7 +6,7 @@ export const SECRET_KEY = process.env.CLERK_SECRET_KEY || ''
 export const PUBLISHABLE_KEY = process.env.CLERK_PUBLISHABLE_KEY || ''
 export const API_URL = process.env.CLERK_API_URL
 export const JWT_KEY = process.env.CLERK_JWT_KEY || ''
-export const TELEMETRY_DISABLED = isTruthy(process.env.GATSBY_CLERK_TELEMETRY_DISABLED);
-export const TELEMETRY_DEBUG = isTruthy(process.env.GATSBY_CLERK_TELEMETRY_DEBUG);
+export const TELEMETRY_DISABLED = isTruthy(process.env.CLERK_TELEMETRY_DISABLED)
+export const TELEMETRY_DEBUG = isTruthy(process.env.CLERK_TELEMETRY_DEBUG)
 
 export const { Cookies, Headers } = constants
