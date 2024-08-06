@@ -12,8 +12,8 @@ importers:
         specifier: ^1.6.1
         version: 1.6.1(react@18.3.1)
       '@clerk/shared':
-        specifier: ^2.4.1
-        version: 2.4.1(react@18.3.1)
+        specifier: ^2.4.5
+        version: 2.4.5(react@18.3.1)
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.24.0
@@ -210,18 +210,6 @@ packages:
     resolution: {integrity: sha512-UA1zLXuHQBZ7CQtRXTKl5siejmfqOYs4jLfAyMnsHjY0r+PJ2/oZ4WsFepJNw1CdQdP2hi8wmrSuV3EZA6VjnQ==}
     engines: {node: '>=18.17.0'}
 
-  '@clerk/shared@2.4.1':
-    resolution: {integrity: sha512-sApuz6hDRIai4Jwo/fBcihX74+DdrKLt08LkEVrooh/7zc0ipDOSGlqmAy15yNuKPaxpemp/9nW4T8gq6uIr9Q==}
-    engines: {node: '>=18.17.0'}
-    peerDependencies:
-      react: '>=18 || >=19.0.0-beta'
-      react-dom: '>=18 || >=19.0.0-beta'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-
   '@clerk/shared@2.4.5':
     resolution: {integrity: sha512-WK8/LLow7q+OXzsRWtSAkqsBbtt16TcivfvN5bIhbcs52jIiA1EvIOetwFk5yXDNBHdEn2GxL7UXxdBaodselA==}
     engines: {node: '>=18.17.0'}
@@ -236,10 +224,6 @@ packages:
 
   '@clerk/types@4.12.1':
     resolution: {integrity: sha512-0torlmJM3S3kYdaZuIrw1pf4K8aMvoFV+PE1xg7MGfZ0enD9UO3Vhw24pP/yBhI4hVGtNu95E63gpeOFIYysrA==}
-    engines: {node: '>=18.17.0'}
-
-  '@clerk/types@4.9.1':
-    resolution: {integrity: sha512-fCmqzPBFh0rH9TlUVPpvPW225DtGJDuCv5GecwuuzD8hcgwGetTfRSDRNl5Dub5aJuqYWGQQCCnKfnfCrhZvrA==}
     engines: {node: '>=18.17.0'}
 
   '@es-joy/jsdoccomment@0.43.1':
@@ -3612,16 +3596,6 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/shared@2.4.1(react@18.3.1)':
-    dependencies:
-      '@clerk/types': 4.9.1
-      glob-to-regexp: 0.4.1
-      js-cookie: 3.0.5
-      std-env: 3.7.0
-      swr: 2.2.5(react@18.3.1)
-    optionalDependencies:
-      react: 18.3.1
-
   '@clerk/shared@2.4.5(react@18.3.1)':
     dependencies:
       '@clerk/types': 4.12.1
@@ -3633,10 +3607,6 @@ snapshots:
       react: 18.3.1
 
   '@clerk/types@4.12.1':
-    dependencies:
-      csstype: 3.1.1
-
-  '@clerk/types@4.9.1':
     dependencies:
       csstype: 3.1.1
 

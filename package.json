@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@clerk/backend": "^1.6.1",
-    "@clerk/shared": "^2.4.1"
+    "@clerk/shared": "^2.4.5"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.24.0",
