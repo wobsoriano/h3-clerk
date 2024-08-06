@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.10
+
+### Patch Changes
+
+- 5e83887: Bump @clerk/backend and @clerk/shared versions
+
 ## 0.4.9
 
 ### Patch Changes
