@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.11
+
+### Patch Changes
+
+- 88707a9: Bump @clerk/backend to 1.6.2 and @clerk/shared to 2.5.0
+
 ## 0.4.10
 
 ### Patch Changes
