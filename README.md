@@ -72,7 +72,7 @@ app.use(withClerkMiddleware())
 app.use('/protected-endpoint', async (event) => {
   const { userId, has } = getAuth(event)
 
-  if (!userId || !has('org:admin')) {
+  if (!userId || !has({ role: 'org:admin' })) {
     setResponseStatus(event, 401, 'Unauthorized')
     return
   }
@@ -90,7 +90,11 @@ All resource operations are mounted as sub-APIs on the `clerkClient` object. See
 ```ts
 import { clerkClient } from '@clerk/express'
 
-const users = await clerkClient.users.getUserList()
+app.use('/users', async (event) => {
+  const users = await clerkClient.users.getUserList()
+
+  return { users }
+})
 ```
 
 ## License
