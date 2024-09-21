@@ -1,10 +1,10 @@
 import type { AuthObject, ClerkOptions } from '@clerk/backend'
-import { eventHandler, setResponseHeader } from 'h3'
 import { AuthStatus } from '@clerk/backend/internal'
-import { toWebRequest } from './utils'
+import { eventHandler, setResponseHeader } from 'h3'
 import { clerkClient } from './clerkClient'
 import * as constants from './constants'
 import { handshakeWithoutRedirect } from './errors'
+import { toWebRequest } from './utils'
 
 export type H3ClerkOptions = ClerkOptions & {
   enableHandshake?: boolean
