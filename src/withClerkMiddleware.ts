@@ -11,7 +11,7 @@ export type H3ClerkOptions = ClerkOptions & {
 }
 
 export function withClerkMiddleware(options?: H3ClerkOptions) {
-  const enableHandshake = options?.enableHandshake ?? true
+  const enableHandshake = options?.enableHandshake ?? false
   return eventHandler(async (event) => {
     const clerkRequest = toWebRequest(event)
 
@@ -45,6 +45,6 @@ export function withClerkMiddleware(options?: H3ClerkOptions) {
 
 declare module 'h3' {
   interface H3EventContext {
-    auth: AuthObject
+    auth: AuthObject | null
   }
 }
