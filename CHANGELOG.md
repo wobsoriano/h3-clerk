@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.0
+
+### Minor Changes
+
+- f26c02b: Disable handshake flow by default
+
+### Patch Changes
+
+- 4000776: Bump `@clerk/backend` to 1.13.2 and `@clerk/shared` to 2.8.1
+
 ## 0.4.12
 
 ### Patch Changes
