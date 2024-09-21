@@ -17,41 +17,25 @@ npm install h3-clerk
 ## Usage
 
 ```ts
-import { createApp, createError, eventHandler } from 'h3'
+import { createApp, createError, eventHandler, setResponseStatus } from 'h3'
 import { clerkClient, getAuth, withClerkMiddleware } from 'h3-clerk'
 
 const app = createApp()
 
-// For all routes
 app.use(withClerkMiddleware())
+
 app.use('/protected-endpoint', async (event) => {
   const { userId } = getAuth(event)
 
-  if (!userId)
-    throw createError({ statusCode: 403 })
+  if (!userId) {
+    setResponseStatus(event, 401, 'Unauthorized')
+    return
+  }
 
   const user = await clerkClient.users.getUser(userId)
 
   return { user }
 })
-
-// For a single route
-app.use(
-  '/protected-endpoint',
-  eventHandler({
-    onRequest: [withClerkMiddleware()],
-    handler: async (event) => {
-      const { userId } = getAuth(event)
-
-      if (!userId)
-        throw createError({ statusCode: 403 })
-
-      const user = await clerkClient.users.getUser(userId)
-
-      return { user }
-    }
-  })
-)
 ```
 
 ## TypeScript Shim
