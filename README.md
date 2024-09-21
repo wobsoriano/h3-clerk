@@ -38,18 +38,6 @@ app.use('/protected-endpoint', async (event) => {
 })
 ```
 
-## TypeScript Shim
-
-```ts
-import type { AuthObject } from '@clerk/backend'
-
-declare module 'h3' {
-  interface H3EventContext {
-    auth: AuthObject
-  }
-}
-```
-
 ## License
 
 MIT
