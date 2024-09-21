@@ -15,7 +15,7 @@ npm install h3-clerk
 ## Usage
 
 ```ts
-import { createApp, createError, eventHandler, setResponseStatus } from 'h3'
+import { createApp, eventHandler, setResponseStatus } from 'h3'
 import { clerkClient, getAuth, withClerkMiddleware } from 'h3-clerk'
 
 const app = createApp()
@@ -34,6 +34,63 @@ app.use('/protected-endpoint', async (event) => {
 
   return { user }
 })
+```
+
+## Available methods
+
+### `withClerkMiddleware()`
+
+The `clerkMiddleware()` middleware integrates Clerk authentication into your H3 application. It is required to be set in the middleware chain before using other Clerk utilities, such as `getAuth()`.
+
+```ts
+import { createApp } from 'h3'
+import { withClerkMiddleware } from 'h3-clerk'
+
+const app = createApp()
+
+app.use(withClerkMiddleware())
+```
+
+#### Options
+
+The `withClerkMiddleware()` middleware accepts [these options](https://clerk.com/docs/references/nextjs/clerk-middleware#clerk-middleware-options) plus the following:
+
+- `enableHandshake` - Enables Clerk's handshake flow, which helps verify the session state when a session JWT has expired. It issues a 307 redirect to refresh the session JWT if the user is still logged in.
+
+### `getAuth()`
+
+The `getAuth()` function retrieves authentication state from the [event object](https://h3.unjs.io/guide/event).
+
+```ts
+import { createApp, eventHandler, setResponseStatus } from 'h3'
+import { getAuth, withClerkMiddleware } from 'h3-clerk'
+
+const app = createApp()
+
+app.use(withClerkMiddleware())
+
+app.use('/protected-endpoint', async (event) => {
+  const { userId, has } = getAuth(event)
+
+  if (!userId || !has('org:admin')) {
+    setResponseStatus(event, 401, 'Unauthorized')
+    return
+  }
+
+  return { message: 'Hello, admin' }
+})
+```
+
+### `clerkClient`
+
+[Clerk's JavaScript Backend SDK](https://clerk.com/docs/references/backend/overview) exposes Clerk's Backend API resources and low-level authentication utilities for JavaScript environments. For example, if you wanted to get a list of all users in your application, instead of creating a fetch to Clerk's `https://api.clerk.com/v1/users` endpoint, you can use the `users.getUserList()` method provided by the JavaScript Backend SDK.
+
+All resource operations are mounted as sub-APIs on the `clerkClient` object. See the [reference documentation](https://clerk.com/docs/references/backend/overview#usage) for more information.
+
+```ts
+import { clerkClient } from '@clerk/express'
+
+const users = await clerkClient.users.getUserList()
 ```
 
 ## License
