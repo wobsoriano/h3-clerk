@@ -40,7 +40,7 @@ app.use('/protected-endpoint', async (event) => {
 
 ### `withClerkMiddleware()`
 
-The `clerkMiddleware()` middleware integrates Clerk authentication into your H3 application. It is required to be set in the middleware chain before using other Clerk utilities, such as `getAuth()`.
+The `withClerkMiddleware()` middleware integrates Clerk authentication into your H3 application. It is required to be set in the middleware chain before using other Clerk utilities, such as `getAuth()`.
 
 ```ts
 import { createApp } from 'h3'
