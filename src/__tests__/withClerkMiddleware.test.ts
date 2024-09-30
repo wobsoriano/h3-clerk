@@ -26,7 +26,7 @@ describe('withClerkMiddleware(options)', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     vi.restoreAllMocks()
-    app = createApp().use(withClerkMiddleware({ enableHandshake: true }))
+    app = createApp().use(withClerkMiddleware())
     request = supertest(toNodeListener(app))
   })
 
