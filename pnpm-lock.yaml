@@ -12,8 +12,8 @@ importers:
         specifier: ^1.13.6
         version: 1.13.6(react@18.3.1)
       '@clerk/shared':
-        specifier: ^2.8.1
-        version: 2.8.1(react@18.3.1)
+        specifier: ^2.8.4
+        version: 2.8.4(react@18.3.1)
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^3.7.1
@@ -206,18 +206,6 @@ packages:
     resolution: {integrity: sha512-aHQZk/qDk4KEJFlEKB27mxm5rhThPJ+hu/cAmvZumrW/XMile44DhGqltV93qq1AiCl9eEprlSOr5KAfXRIAzg==}
     engines: {node: '>=18.17.0'}
 
-  '@clerk/shared@2.8.1':
-    resolution: {integrity: sha512-8LxnrQDj9xdKcOFQa4FSKb3P5loZeLMiynzD9yBJgCBTCJ8dNV//qySlP6xK6z172L8RwnDk29yO9J+v+FS9Sw==}
-    engines: {node: '>=18.17.0'}
-    peerDependencies:
-      react: '>=18 || >=19.0.0-beta'
-      react-dom: '>=18 || >=19.0.0-beta'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-
   '@clerk/shared@2.8.4':
     resolution: {integrity: sha512-I+V05B/YqEWAaXb+SWb9VFCK6WSjChW01gC9OJxpkvjauNiBtDjFVghodZFg2dxcbwQGQNj6sC1hrf+mcBVBqw==}
     engines: {node: '>=18.17.0'}
@@ -229,10 +217,6 @@ packages:
         optional: true
       react-dom:
         optional: true
-
-  '@clerk/types@4.21.0':
-    resolution: {integrity: sha512-yyPNF4agzub9zXOht9Bk8HG+OkHfLKIpsQuTCiZJszehcKNUqKvJZRxUwdRREBYnBdMl632PKCwbckZsChVxVQ==}
-    engines: {node: '>=18.17.0'}
 
   '@clerk/types@4.23.0':
     resolution: {integrity: sha512-xCAPeKXOt/qAEzhlv35sdNYm9ewoveRMUwVEoGsFIDaeF9N1agCNdzKtCMcHjGZFH4ESnopLmEq2n46aRxPFkA==}
@@ -3370,16 +3354,6 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/shared@2.8.1(react@18.3.1)':
-    dependencies:
-      '@clerk/types': 4.21.0
-      glob-to-regexp: 0.4.1
-      js-cookie: 3.0.5
-      std-env: 3.7.0
-      swr: 2.2.5(react@18.3.1)
-    optionalDependencies:
-      react: 18.3.1
-
   '@clerk/shared@2.8.4(react@18.3.1)':
     dependencies:
       '@clerk/types': 4.23.0
@@ -3389,10 +3363,6 @@ snapshots:
       swr: 2.2.5(react@18.3.1)
     optionalDependencies:
       react: 18.3.1
-
-  '@clerk/types@4.21.0':
-    dependencies:
-      csstype: 3.1.1
 
   '@clerk/types@4.23.0':
     dependencies:
