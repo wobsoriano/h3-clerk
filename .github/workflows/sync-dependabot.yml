@@ -12,15 +12,15 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
         with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
+          ref: ${{ github.head_ref }}
       - uses: pnpm/action-setup@v4
         with:
           version: 8.6.3
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
           cache: pnpm
 
       - run: pnpm install
@@ -33,46 +33,36 @@ jobs:
             const fs = require('fs');
             const path = require('path');
 
-            async function run() {
-              try {
-                const prBody = context.payload.pull_request.body;
-                const updates = [];
-                const regex = /Updates `([^`]+)` from ([0-9.]+) to ([0-9.]+)/g;
-                let match;
+            const prBody = context.payload.pull_request.body;
+            const updates = prBody.match(/Updates `([^`]+)` from [0-9.]+ to [0-9.]+/g)
+                            ?.map(update => update.replace(/Updates `(.+)` from [0-9.]+ to ([0-9.]+)/, '$1 to $2'))
+                            || [];
 
-                while ((match = regex.exec(prBody)) !== null) {
-                  updates.push(`${match[1]} to ${match[3]}`);
-                }
+            if (updates.length === 0) {
+              core.info('No package updates found in PR body');
+              return;
+            }
 
-                if (updates.length === 0) {
-                  core.info('No package updates found in PR body');
-                  return;
-                }
+            const changesetDir = path.join(process.env.GITHUB_WORKSPACE, '.changeset');
+            fs.mkdirSync(changesetDir, { recursive: true });
 
-                const changesetDir = path.join(process.env.GITHUB_WORKSPACE, '.changeset');
-                fs.mkdirSync(changesetDir, { recursive: true });
-
-                const changesetPath = path.join(changesetDir, `dependency-update-${Date.now()}.md`);
-                const changesetContent = `---
+            const changesetContent = `---
             "${context.repo.owner}/${context.repo.repo}": patch
             ---
 
             Bump ${updates.join(', ')}
             `;
 
-                            fs.writeFileSync(changesetPath, changesetContent);
+            fs.writeFileSync(path.join(changesetDir, `dependency-update-${Date.now()}.md`), changesetContent);
 
-                            // Push changes
-                            await exec.exec('git', ['config', '--local', 'user.email', 'action@github.com']);
-                            await exec.exec('git', ['config', '--local', 'user.name', 'GitHub Action']);
-                            await exec.exec('git', ['add', '.changeset']);
-                            await exec.exec('git', ['commit', '-m', 'Add changeset for dependency update PR']);
-                            await exec.exec('git', ['push', 'origin', `HEAD:${context.payload.pull_request.head.ref}`]);
+            try {
+              await exec.exec('git', ['config', '--local', 'user.email', 'action@github.com']);
+              await exec.exec('git', ['config', '--local', 'user.name', 'GitHub Action']);
+              await exec.exec('git', ['add', '.changeset']);
+              await exec.exec('git', ['commit', '-m', 'Add changeset for dependency update PR']);
+              await exec.exec('git', ['push', 'origin', `HEAD:${context.payload.pull_request.head.ref}`]);
 
-                            core.info('Changeset created and pushed successfully');
-                          } catch (error) {
-                            core.setFailed(`Action failed with error: ${error}`);
-                          }
-                        }
-
-                        run();
+              core.info('Changeset created and pushed successfully');
+            } catch (error) {
+              core.setFailed(`Action failed with error: ${error}`);
+            }
