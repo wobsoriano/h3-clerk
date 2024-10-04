@@ -4,62 +4,45 @@ on:
   push:
     branches:
       - main
-
   pull_request:
     branches:
       - main
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
-
-      - name: Install
-        run: bun install
-
-      - name: Lint
-        run: bun run lint
-
-  typecheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
-
-      - name: Install
-        run: bun install
-
-      - name: Typecheck
-        run: bun run typecheck
-
   test:
     runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        node: [20.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
       fail-fast: false
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+      - name: Checkout Repo
+        uses: actions/checkout@v4
         with:
-          bun-version: latest
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.0
 
-      - name: Install
-        run: bun install
+      - name: Set up Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
 
       - name: Build
-        run: bun run build
+        run: pnpm build
 
       - name: Test
-        run: bun run test
+        run: pnpm test

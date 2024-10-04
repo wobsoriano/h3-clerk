@@ -1,25 +1,43 @@
-name: Add changeset to Dependabot updates
+name: Release
 
 on:
-  pull_request_target:
-    types: [opened, synchronize, labeled]
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  dependabot:
-    name: Update Dependabot PR
+  release:
+    permissions:
+      contents: write # to create release (changesets/action)
+      pull-requests: write # to create pull request (changesets/action)
+    name: Release
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
-
     steps:
-      - name: Checkout
+      - name: Checkout Repo
         uses: actions/checkout@v4
         with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.ref }}
-      - name: Update PR
-        uses: StafflinePeoplePlus/dependabot-changesets@v0.1.5
+      - uses: pnpm/action-setup@v4
         with:
-          owner: wobsoriano
-          repo: h3-clerk
-          pr-number: ${{ github.event.pull_request.number }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          version: 9.12.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
