@@ -88,7 +88,7 @@ app.use('/protected-endpoint', async (event) => {
 All resource operations are mounted as sub-APIs on the `clerkClient` object. See the [reference documentation](https://clerk.com/docs/references/backend/overview#usage) for more information.
 
 ```ts
-import { clerkClient } from '@clerk/express'
+import { clerkClient } from 'h3-clerk'
 
 app.use('/users', async (event) => {
   const users = await clerkClient.users.getUserList()
