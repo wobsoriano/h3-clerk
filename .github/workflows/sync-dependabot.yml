@@ -34,6 +34,7 @@ jobs:
             const path = require('path');
 
             const prBody = context.payload.pull_request.body;
+            const prNumber = context.payload.pull_request.number;
             const updates = prBody.match(/Updates `([^`]+)` from [0-9.]+ to [0-9.]+/g)
                             ?.map(update => update.replace(/Updates `(.+)` from [0-9.]+ to ([0-9.]+)/, '$1 to $2'))
                             || [];
@@ -47,13 +48,14 @@ jobs:
             fs.mkdirSync(changesetDir, { recursive: true });
 
             const changesetContent = `---
-            "${context.repo.owner}/${context.repo.repo}": patch
+            "${context.repo.repo}": patch
             ---
 
             Bump ${updates.join(', ')}
             `;
 
-            fs.writeFileSync(path.join(changesetDir, `dependency-update-${Date.now()}.md`), changesetContent);
+            const changesetPath = path.join(changesetDir, `dependabot-${prNumber}.md`);
+            fs.writeFileSync(changesetPath, changesetContent);
 
             try {
               await exec.exec('git', ['config', '--local', 'user.email', 'action@github.com']);
