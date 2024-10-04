@@ -58,20 +58,30 @@ jobs:
             fs.writeFileSync(changesetPath, changesetContent);
 
             try {
+              // Fetch the latest changes
+              await exec.exec('git', ['fetch', 'origin', context.payload.pull_request.head.ref]);
+
+              // Configure git
               await exec.exec('git', ['config', '--local', 'user.email', 'action@github.com']);
               await exec.exec('git', ['config', '--local', 'user.name', 'GitHub Action']);
+
+              // Stage the changeset file
               await exec.exec('git', ['add', changesetPath]);
 
               // Check if there are changes to commit
               const { stdout } = await exec.getExecOutput('git', ['status', '--porcelain']);
 
               if (stdout) {
+                // Commit changes
                 await exec.exec('git', ['commit', '-m', `Add or update changeset for PR #${prNumber}`]);
+
+                // Push changes
                 await exec.exec('git', ['push', 'origin', `HEAD:${context.payload.pull_request.head.ref}`]);
                 core.info('Changeset created or updated and pushed successfully');
               } else {
                 core.info('No changes to commit. Changeset is already up to date.');
               }
             } catch (error) {
-              core.setFailed(`Action failed with error: ${error}`);
+              core.setFailed(`Action failed with error: ${error.message}`);
+              core.debug(`Full error object: ${JSON.stringify(error)}`);
             }
