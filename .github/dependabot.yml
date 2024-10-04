@@ -14,5 +14,5 @@ updates:
     groups:
       clerk-dependencies:
         patterns:
-          - '@clerk/*
+          - '@clerk/*'
     versioning-strategy: increase
