@@ -25,60 +25,56 @@ jobs:
 
       - run: pnpm install
 
-      - name: Parse PR body and create changeset
+      - name: Create and push changeset
         uses: actions/github-script@v6
         with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const fs = require('fs');
             const path = require('path');
+            const core = require('@actions/core');
+            const github = require('@actions/github');
 
-            const prBody = context.payload.pull_request.body;
-            const updates = [];
+            async function run() {
+              try {
+                const prBody = context.payload.pull_request.body;
+                const updates = [];
+                const regex = /Updates `([^`]+)` from ([0-9.]+) to ([0-9.]+)/g;
+                let match;
 
-            // Parse the PR body to extract package updates
-            const updateRegex = /Updates `([^`]+)` from ([0-9.]+) to ([0-9.]+)/g;
-            let match;
-            while ((match = updateRegex.exec(prBody)) !== null) {
-              updates.push({
-                package: match[1],
-                newVersion: match[3]
-              });
-            }
+                while ((match = regex.exec(prBody)) !== null) {
+                  updates.push(`${match[1]} to ${match[3]}`);
+                }
 
-            // If no updates found, exit
-            if (updates.length === 0) {
-              console.log('No package updates found in PR body');
-              return;
-            }
+                if (updates.length === 0) {
+                  core.info('No package updates found in PR body');
+                  return;
+                }
 
-            // Create the changeset content
-            const changesetDir = path.join(process.env.GITHUB_WORKSPACE, '.changeset');
-            fs.mkdirSync(changesetDir, { recursive: true });
+                const changesetDir = path.join(process.env.GITHUB_WORKSPACE, '.changeset');
+                fs.mkdirSync(changesetDir, { recursive: true });
 
-            const changesetPath = path.join(changesetDir, `dependency-update-${context.sha}.md`);
-            const changesetContent = `---
-            "${context.repo.repo}": patch
+                const changesetPath = path.join(changesetDir, `dependency-update-${Date.now()}.md`);
+                const changesetContent = `---
+            "${context.repo.owner}/${context.repo.repo}": patch
             ---
 
-            Bump ${updates.map(u => `\`${u.package}\` to ${u.newVersion}`).join(', ')}
+            Bump ${updates.join(', ')}
             `;
 
-                        fs.writeFileSync(changesetPath, changesetContent);
+                            fs.writeFileSync(changesetPath, changesetContent);
 
-                        // Commit the changeset
-                        await exec.exec('git', ['config', '--local', 'user.email', 'action@github.com']);
-                        await exec.exec('git', ['config', '--local', 'user.name', 'GitHub Action']);
-                        await exec.exec('git', ['add', '.changeset']);
-                        await exec.exec('git', ['commit', '-m', 'Add changeset for dependency update PR']);
-                        await exec.exec('git', ['push']);
+                            // Push changes
+                            await exec.exec('git', ['config', '--local', 'user.email', 'action@github.com']);
+                            await exec.exec('git', ['config', '--local', 'user.name', 'GitHub Action']);
+                            await exec.exec('git', ['add', '.changeset']);
+                            await exec.exec('git', ['commit', '-m', 'Add changeset for dependency update PR']);
+                            await exec.exec('git', ['push', 'origin', `HEAD:${context.payload.pull_request.head.ref}`]);
 
-                        // Update PR description
-                        const updatedBody = `${prBody}\n\nChangeset added by GitHub Action.`;
-                        await github.rest.pulls.update({
-                          owner: context.repo.owner,
-                          repo: context.repo.repo,
-                          pull_number: context.payload.pull_request.number,
-                          body: updatedBody
-                        });
+                            core.info('Changeset created and pushed successfully');
+                          } catch (error) {
+                            core.setFailed(`Action failed with error: ${error}`);
+                          }
+                        }
 
-            console.log('Changeset created and committed successfully');
+                        run();
