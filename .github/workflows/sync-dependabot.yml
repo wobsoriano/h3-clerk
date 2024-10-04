@@ -1,0 +1,84 @@
+name: Dependency Update Changeset
+
+on:
+  pull_request:
+    types: [opened, labeled, synchronize]
+
+jobs:
+  create-changeset:
+    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8.6.3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: pnpm
+
+      - run: pnpm install
+
+      - name: Parse PR body and create changeset
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            const prBody = context.payload.pull_request.body;
+            const updates = [];
+
+            // Parse the PR body to extract package updates
+            const updateRegex = /Updates `([^`]+)` from ([0-9.]+) to ([0-9.]+)/g;
+            let match;
+            while ((match = updateRegex.exec(prBody)) !== null) {
+              updates.push({
+                package: match[1],
+                newVersion: match[3]
+              });
+            }
+
+            // If no updates found, exit
+            if (updates.length === 0) {
+              console.log('No package updates found in PR body');
+              return;
+            }
+
+            // Create the changeset content
+            const changesetDir = path.join(process.env.GITHUB_WORKSPACE, '.changeset');
+            fs.mkdirSync(changesetDir, { recursive: true });
+
+            const changesetPath = path.join(changesetDir, `dependency-update-${context.sha}.md`);
+            const changesetContent = `---
+            "${context.repo.repo}": patch
+            ---
+
+            Bump ${updates.map(u => `\`${u.package}\` to ${u.newVersion}`).join(', ')}
+            `;
+
+                        fs.writeFileSync(changesetPath, changesetContent);
+
+                        // Commit the changeset
+                        await exec.exec('git', ['config', '--local', 'user.email', 'action@github.com']);
+                        await exec.exec('git', ['config', '--local', 'user.name', 'GitHub Action']);
+                        await exec.exec('git', ['add', '.changeset']);
+                        await exec.exec('git', ['commit', '-m', 'Add changeset for dependency update PR']);
+                        await exec.exec('git', ['push']);
+
+                        // Update PR description
+                        const updatedBody = `${prBody}\n\nChangeset added by GitHub Action.`;
+                        await github.rest.pulls.update({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          pull_number: context.payload.pull_request.number,
+                          body: updatedBody
+                        });
+
+            console.log('Changeset created and committed successfully');
