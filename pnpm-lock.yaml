@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^1.13.10
-        version: 1.13.10(react@18.3.1)
+        specifier: ^1.14.1
+        version: 1.14.1(react@18.3.1)
       '@clerk/shared':
-        specifier: ^2.9.1
-        version: 2.9.1(react@18.3.1)
+        specifier: ^2.9.2
+        version: 2.9.2(react@18.3.1)
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^3.7.1
@@ -202,12 +202,12 @@ packages:
     bundledDependencies:
       - is-unicode-supported
 
-  '@clerk/backend@1.13.10':
-    resolution: {integrity: sha512-1pastJJ+LpEPxKynseJVsZhOwn4bO8Mg+ekCeoDbQC4b4jxSM4kOGriYAXy8xe4q2K+pufe/pTPeKxQT/jkxtg==}
+  '@clerk/backend@1.14.1':
+    resolution: {integrity: sha512-YlKMpiVo4UITw3sgA+9QrAFRILVOz5hgB1Zw180Y2LEZ5a+MdpX668vJKGh7riSweMN7JQvU2jlsKGRO+1bXDw==}
     engines: {node: '>=18.17.0'}
 
-  '@clerk/shared@2.9.1':
-    resolution: {integrity: sha512-NOO6gLRKvEMmz/3pjDiG/rE7ZSmLbZFaU1yTyx94Wb33v0sAaF4v8uypbXSswgAsPWVKu+fgkWmmbhBJP5Us7A==}
+  '@clerk/shared@2.9.2':
+    resolution: {integrity: sha512-vRMDj13Pv9n8Pf+f8P40AvqJ8QEq348qUxUVIf17vn9R3/toicrQOY/Q6qsrAS8KXY9+ZnyTafJa+VFK+6iEFA==}
     engines: {node: '>=18.17.0'}
     peerDependencies:
       react: '>=18 || >=19.0.0-beta'
@@ -218,8 +218,8 @@ packages:
       react-dom:
         optional: true
 
-  '@clerk/types@4.25.1':
-    resolution: {integrity: sha512-ILvR2YXz6BSGXDoozBAd2BGj8ZF/FQrfWQd0FtLz1JXt1vurkgRncAhEcC427OiXNRnq5R2Pn++urfFEa0PqYA==}
+  '@clerk/types@4.26.0':
+    resolution: {integrity: sha512-VGcrQz/XpCiGbpIIzKVwWw4nLorzKnIP1IAemj1xt/80ULcdEZCncwhas6PoYBBsl1W55A1SwP9B/pEs0nmkCw==}
     engines: {node: '>=18.17.0'}
 
   '@es-joy/jsdoccomment@0.48.0':
@@ -2939,8 +2939,8 @@ packages:
   tslib@2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
 
-  tslib@2.7.0:
-    resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
+  tslib@2.8.0:
+    resolution: {integrity: sha512-jWVzBLplnCmoaTr13V9dYbiQ99wvZRd0vNWaDRg+aVYRcjDF3nDksxFDE/+fkXnKhpnUUkmx5pK/v8mCtLVqZA==}
 
   tsup@8.0.1:
     resolution: {integrity: sha512-hvW7gUSG96j53ZTSlT4j/KL0q1Q2l6TqGBFc6/mu/L46IoNWqLLUzLRLP1R8Q7xrJTmkDxxDoojV5uCVs1sVOg==}
@@ -3457,10 +3457,10 @@ snapshots:
       picocolors: 1.1.0
       sisteransi: 1.0.5
 
-  '@clerk/backend@1.13.10(react@18.3.1)':
+  '@clerk/backend@1.14.1(react@18.3.1)':
     dependencies:
-      '@clerk/shared': 2.9.1(react@18.3.1)
-      '@clerk/types': 4.25.1
+      '@clerk/shared': 2.9.2(react@18.3.1)
+      '@clerk/types': 4.26.0
       cookie: 0.7.0
       snakecase-keys: 5.4.4
       tslib: 2.4.1
@@ -3468,9 +3468,9 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/shared@2.9.1(react@18.3.1)':
+  '@clerk/shared@2.9.2(react@18.3.1)':
     dependencies:
-      '@clerk/types': 4.25.1
+      '@clerk/types': 4.26.0
       glob-to-regexp: 0.4.1
       js-cookie: 3.0.5
       std-env: 3.7.0
@@ -3478,7 +3478,7 @@ snapshots:
     optionalDependencies:
       react: 18.3.1
 
-  '@clerk/types@4.25.1':
+  '@clerk/types@4.26.0':
     dependencies:
       csstype: 3.1.1
 
@@ -4697,7 +4697,7 @@ snapshots:
       minimatch: 9.0.5
       semver: 7.6.3
       stable-hash: 0.0.4
-      tslib: 2.7.0
+      tslib: 2.8.0
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -6309,12 +6309,12 @@ snapshots:
 
   synckit@0.6.2:
     dependencies:
-      tslib: 2.7.0
+      tslib: 2.8.0
 
   synckit@0.9.1:
     dependencies:
       '@pkgr/core': 0.1.1
-      tslib: 2.7.0
+      tslib: 2.8.0
 
   tapable@2.2.1: {}
 
@@ -6389,7 +6389,7 @@ snapshots:
 
   tslib@2.4.1: {}
 
-  tslib@2.7.0: {}
+  tslib@2.8.0: {}
 
   tsup@8.0.1(postcss@8.4.47)(typescript@5.6.2):
     dependencies:
