@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.7
+
+### Patch Changes
+
+- ac32d94: Bump @clerk/backend from 1.15.2 to 1.15.5
+- ac32d94: Bump @clerk/shared from 2.11.0 to 2.11.3
+
 ## 0.5.6
 
 ### Patch Changes
