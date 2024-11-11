@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^1.15.7
-        version: 1.15.7(react@18.3.1)
+        specifier: ^1.16.1
+        version: 1.16.1(react@18.3.1)
       '@clerk/shared':
-        specifier: ^2.11.5
-        version: 2.11.5(react@18.3.1)
+        specifier: ^2.12.1
+        version: 2.12.1(react@18.3.1)
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^3.7.1
@@ -41,7 +41,7 @@ importers:
         version: 0.16.9
       tsup:
         specifier: 8.0.1
-        version: 8.0.1(postcss@8.4.47)(typescript@5.6.2)
+        version: 8.0.1(postcss@8.4.48)(typescript@5.6.2)
       typescript:
         specifier: ^5.6.2
         version: 5.6.2
@@ -206,24 +206,24 @@ packages:
     bundledDependencies:
       - is-unicode-supported
 
-  '@clerk/backend@1.15.7':
-    resolution: {integrity: sha512-srJZE3fMY9cHgTsFpO5rxFJmX30GMMplML7M8hvP58y5s4D+8OgqJmAPK3FsqME4ABp9rIXmDCbxMZav9DhP2g==}
+  '@clerk/backend@1.16.1':
+    resolution: {integrity: sha512-Rrw8LLHk5L1gHhWT/nr5zuWvPapvgdTZ4O35v22D8eLaTdYLJOptHquBwaJ9R9WMmYxDi35lm9a4oVk0t5h7BQ==}
     engines: {node: '>=18.17.0'}
 
-  '@clerk/shared@2.11.5':
-    resolution: {integrity: sha512-GQiqKgIBhqnXfLmohNbDvTz8GNK/nYRSWciGArdezaB+w2q+QpQyo2v1Y7Bh6j608iKZCnc4jG4yxcAI/pRQDA==}
+  '@clerk/shared@2.12.1':
+    resolution: {integrity: sha512-ezX/BXnMJ1rH7vX4H3nXpZ3WW8m1lbyri5dHOoDlREUOe/zr9lawUgVx+75aTxrVPtK7u8XwzMj/rT2cMfMmqw==}
     engines: {node: '>=18.17.0'}
     peerDependencies:
-      react: '>=18 || >=19.0.0-beta'
-      react-dom: '>=18 || >=19.0.0-beta'
+      react: ^18 || ^19.0.0-0
+      react-dom: ^18 || ^19.0.0-0
     peerDependenciesMeta:
       react:
         optional: true
       react-dom:
         optional: true
 
-  '@clerk/types@4.30.0':
-    resolution: {integrity: sha512-/RLWXsz4yp9uFvJhDZDyZGRDyx3VdHRyPYQS7onhGVTY846X6iCzJVlMFzdpzW3PITxMBgCI9MjgKdH50vBPBA==}
+  '@clerk/types@4.32.0':
+    resolution: {integrity: sha512-6oqRJsQE8GIThVyPBAO0kJP0pZJ1c11Hz0qabDk9lStoxjHy7fRIcIm/JX5xlA6rjilWBMEgJr4C0a36mJvVXg==}
     engines: {node: '>=18.17.0'}
 
   '@es-joy/jsdoccomment@0.48.0':
@@ -2513,6 +2513,9 @@ packages:
   picocolors@1.1.0:
     resolution: {integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==}
 
+  picocolors@1.1.1:
+    resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
+
   picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
@@ -2558,6 +2561,10 @@ packages:
 
   postcss@8.4.47:
     resolution: {integrity: sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==}
+    engines: {node: ^10 || ^12 || >=14}
+
+  postcss@8.4.48:
+    resolution: {integrity: sha512-GCRK8F6+Dl7xYniR5a4FYbpBzU8XnZVeowqsQFYdcXuSbChgiks7qybSkbvnaeqv0G0B+dd9/jJgH8kkLDQeEA==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -2780,6 +2787,9 @@ packages:
 
   std-env@3.7.0:
     resolution: {integrity: sha512-JPbdCEQLj1w5GilpiHAx3qJvFndqybBysA3qUOnznweH4QbNYUsW/ea8QzSrnh0vNsezMMw5bcVool8lM0gwzg==}
+
+  std-env@3.8.0:
+    resolution: {integrity: sha512-Bc3YwwCB+OzldMxOXJIIvC6cPRWr/LxOp48CdQTOkPyk/t4JWWJbrilwBd7RJzKV8QW7tJkcgAmeuLLJugl5/w==}
 
   string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
@@ -3458,10 +3468,10 @@ snapshots:
       picocolors: 1.1.0
       sisteransi: 1.0.5
 
-  '@clerk/backend@1.15.7(react@18.3.1)':
+  '@clerk/backend@1.16.1(react@18.3.1)':
     dependencies:
-      '@clerk/shared': 2.11.5(react@18.3.1)
-      '@clerk/types': 4.30.0
+      '@clerk/shared': 2.12.1(react@18.3.1)
+      '@clerk/types': 4.32.0
       cookie: 0.7.0
       snakecase-keys: 5.4.4
       tslib: 2.4.1
@@ -3469,17 +3479,18 @@ snapshots:
       - react
       - react-dom
 
-  '@clerk/shared@2.11.5(react@18.3.1)':
+  '@clerk/shared@2.12.1(react@18.3.1)':
     dependencies:
-      '@clerk/types': 4.30.0
+      '@clerk/types': 4.32.0
+      dequal: 2.0.3
       glob-to-regexp: 0.4.1
       js-cookie: 3.0.5
-      std-env: 3.7.0
+      std-env: 3.8.0
       swr: 2.2.5(react@18.3.1)
     optionalDependencies:
       react: 18.3.1
 
-  '@clerk/types@4.30.0':
+  '@clerk/types@4.32.0':
     dependencies:
       csstype: 3.1.1
 
@@ -4073,7 +4084,7 @@ snapshots:
       '@vue/shared': 3.5.11
       estree-walker: 2.0.2
       magic-string: 0.30.12
-      postcss: 8.4.47
+      postcss: 8.4.48
       source-map-js: 1.2.1
 
   '@vue/compiler-ssr@3.5.11':
@@ -5943,6 +5954,8 @@ snapshots:
 
   picocolors@1.1.0: {}
 
+  picocolors@1.1.1: {}
+
   picomatch@2.3.1: {}
 
   picomatch@4.0.2: {}
@@ -5961,12 +5974,12 @@ snapshots:
 
   possible-typed-array-names@1.0.0: {}
 
-  postcss-load-config@4.0.2(postcss@8.4.47):
+  postcss-load-config@4.0.2(postcss@8.4.48):
     dependencies:
       lilconfig: 3.1.2
       yaml: 2.5.1
     optionalDependencies:
-      postcss: 8.4.47
+      postcss: 8.4.48
 
   postcss-selector-parser@6.1.2:
     dependencies:
@@ -5977,6 +5990,12 @@ snapshots:
     dependencies:
       nanoid: 3.3.7
       picocolors: 1.1.0
+      source-map-js: 1.2.1
+
+  postcss@8.4.48:
+    dependencies:
+      nanoid: 3.3.7
+      picocolors: 1.1.1
       source-map-js: 1.2.1
 
   prelude-ls@1.2.1: {}
@@ -6212,6 +6231,8 @@ snapshots:
 
   std-env@3.7.0: {}
 
+  std-env@3.8.0: {}
+
   string-width@4.2.3:
     dependencies:
       emoji-regex: 8.0.0
@@ -6390,7 +6411,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@8.0.1(postcss@8.4.47)(typescript@5.6.2):
+  tsup@8.0.1(postcss@8.4.48)(typescript@5.6.2):
     dependencies:
       bundle-require: 4.2.1(esbuild@0.19.12)
       cac: 6.7.14
@@ -6400,14 +6421,14 @@ snapshots:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 4.0.2(postcss@8.4.47)
+      postcss-load-config: 4.0.2(postcss@8.4.48)
       resolve-from: 5.0.0
       rollup: 4.24.0
       source-map: 0.8.0-beta.0
       sucrase: 3.35.0
       tree-kill: 1.2.2
     optionalDependencies:
-      postcss: 8.4.47
+      postcss: 8.4.48
       typescript: 5.6.2
     transitivePeerDependencies:
       - supports-color
