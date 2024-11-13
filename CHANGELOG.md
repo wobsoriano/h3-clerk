@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.10
+
+### Patch Changes
+
+- 4421699: Bump @clerk/backend from 1.16.1 to 1.16.2 in the clerk-dependencies group
+
 ## 0.5.9
 
 ### Patch Changes
