@@ -1,7 +1,7 @@
 {
   "name": "h3-clerk",
   "version": "0.5.11",
-  "packageManager": "pnpm@9.13.0",
+  "packageManager": "pnpm@9.13.2",
   "description": "Unofficial Clerk middleware for H3.",
   "author": "Robert Soriano <sorianorobertc@gmail.com>",
   "license": "MIT",
@@ -39,7 +39,6 @@
     "prepublishOnly": "pnpm build",
     "release": "changeset publish",
     "test": "vitest",
-    "update-deps": "taze -w && pnpm i",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
@@ -50,17 +49,16 @@
     "@clerk/shared": "^2.14.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.7.1",
-    "@changesets/cli": "^2.27.8",
+    "@antfu/eslint-config": "^3.9.1",
+    "@changesets/cli": "^2.27.9",
     "@types/supertest": "^6.0.2",
-    "eslint": "^9.11.0",
-    "eslint-plugin-import": "^2.30.0",
-    "h3": "^1.12.0",
+    "eslint": "^9.15.0",
+    "eslint-plugin-import": "^2.31.0",
+    "h3": "^1.13.0",
     "supertest": "^7.0.0",
-    "taze": "^0.16.9",
     "tsup": "8.0.1",
-    "typescript": "^5.6.2",
-    "vitest": "^2.1.1",
-    "vitest-fetch-mock": "^0.3.0"
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5",
+    "vitest-fetch-mock": "^0.4.2"
   }
 }
