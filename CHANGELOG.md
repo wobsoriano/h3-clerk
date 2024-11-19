@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.12
+
+### Patch Changes
+
+- 9f95654: Bump @clerk/backend from 1.16.4 to 1.17.0
+- 9f95654: Bump @clerk/shared from 2.14.0 to 2.15.0
+- fe43aac: Add default API_URL
+
 ## 0.5.11
 
 ### Patch Changes
