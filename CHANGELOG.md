@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.19
+
+### Patch Changes
+
+- c16ad41: Remove unused handshake option
+
 ## 0.5.18
 
 ### Patch Changes
