@@ -1,6 +1,7 @@
 import type { AuthObject, ClerkOptions } from '@clerk/backend'
 import { AuthStatus } from '@clerk/backend/internal'
 import { eventHandler, setResponseHeader } from 'h3'
+import { Headers } from '../constants'
 import { handshakeWithoutRedirect } from '../errors'
 import { toWebRequest } from '../utils'
 import { clerkClient } from './clerkClient'
@@ -11,7 +12,7 @@ export function withClerkMiddleware(options?: ClerkOptions) {
 
     const requestState = await clerkClient(event).authenticateRequest(clerkRequest, options)
 
-    const locationHeader = requestState.headers.get('location')
+    const locationHeader = requestState.headers.get(Headers.Location)
     if (locationHeader) {
       // Trigger a handshake redirect
       return new Response(null, { status: 307, headers: requestState.headers })
