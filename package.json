@@ -25,6 +25,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
+    },
+    "./nitro": {
+      "types": "./dist/nitro/index.d.ts",
+      "import": "./dist/nitro/index.mjs",
+      "require": "./dist/nitro/index.js"
     }
   },
   "main": "./dist/index.js",
@@ -42,7 +47,13 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "h3": "^1.8.0"
+    "h3": "^1.8.0",
+    "nitropack": "*"
+  },
+  "peerDependenciesMeta": {
+    "nitropack": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@clerk/backend": "^1.21.0",
@@ -55,6 +66,7 @@
     "eslint": "^9.15.0",
     "eslint-plugin-import": "^2.31.0",
     "h3": "^1.13.0",
+    "nitropack": "^2.10.4",
     "supertest": "^7.0.0",
     "tsup": "8.0.1",
     "typescript": "^5.6.3",
