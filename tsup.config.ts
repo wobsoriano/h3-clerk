@@ -9,6 +9,7 @@ export default defineConfig((overrideOptions) => {
     clean: true,
     sourcemap: true,
     format: ['cjs', 'esm'],
+    external: ['#imports'],
     dts: true,
   }
 })
