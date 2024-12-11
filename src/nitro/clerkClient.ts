@@ -7,17 +7,17 @@ export function clerkClient(event: H3Event) {
   const runtimeConfig = useRuntimeConfig(event)
 
   return createClerkClient({
-    publishableKey: runtimeConfig.publishableKey,
-    apiUrl: runtimeConfig.apiUrl,
-    apiVersion: runtimeConfig.apiVersion,
-    proxyUrl: runtimeConfig.proxyUrl,
-    domain: runtimeConfig.domain,
-    isSatellite: runtimeConfig.isSatellite,
-    secretKey: runtimeConfig.secretKey,
-    jwtKey: runtimeConfig.jwtKey,
+    publishableKey: runtimeConfig.clerk.publishableKey,
+    apiUrl: runtimeConfig.clerk.apiUrl,
+    apiVersion: runtimeConfig.clerk.apiVersion,
+    proxyUrl: runtimeConfig.clerk.proxyUrl,
+    domain: runtimeConfig.clerk.domain,
+    isSatellite: runtimeConfig.clerk.isSatellite,
+    secretKey: runtimeConfig.clerk.secretKey,
+    jwtKey: runtimeConfig.clerk.jwtKey,
     telemetry: {
-      disabled: isTruthy(runtimeConfig.telemetry?.disabled),
-      debug: isTruthy(runtimeConfig.telemetry?.debug),
+      disabled: isTruthy(runtimeConfig.clerk.telemetry?.disabled),
+      debug: isTruthy(runtimeConfig.clerk.telemetry?.debug),
     },
   })
 }
