@@ -3,20 +3,20 @@ import { createClerkClient } from '@clerk/backend'
 import { isTruthy } from '@clerk/shared/underscore'
 
 export function clerkClient(event: H3Event) {
-  const runtimeConfig = event.context.nitro.runtimeConfig as Record<string, any>
+  const runtimeConfig = event.context.nitro.runtimeConfig
 
   return createClerkClient({
-    publishableKey: runtimeConfig.clerk.publishableKey,
-    apiUrl: runtimeConfig.clerk.apiUrl,
-    apiVersion: runtimeConfig.clerk.apiVersion,
-    proxyUrl: runtimeConfig.clerk.proxyUrl,
-    domain: runtimeConfig.clerk.domain,
-    isSatellite: runtimeConfig.clerk.isSatellite,
-    secretKey: runtimeConfig.clerk.secretKey,
-    jwtKey: runtimeConfig.clerk.jwtKey,
+    publishableKey: runtimeConfig.clerkPublishableKey,
+    apiUrl: runtimeConfig.clerkApiUrl,
+    apiVersion: runtimeConfig.clerkApiVersion,
+    proxyUrl: runtimeConfig.clerkProxyUrl,
+    domain: runtimeConfig.clerkDomain,
+    isSatellite: runtimeConfig.clerkIsSatellite,
+    secretKey: runtimeConfig.clerkSecretKey,
+    jwtKey: runtimeConfig.clerkJwtKey,
     telemetry: {
-      disabled: isTruthy(runtimeConfig.clerk.telemetry?.disabled),
-      debug: isTruthy(runtimeConfig.clerk.telemetry?.debug),
+      disabled: isTruthy(runtimeConfig.clerkTelemetryDisabled),
+      debug: isTruthy(runtimeConfig.clerkTelemetryDebug),
     },
   })
 }
