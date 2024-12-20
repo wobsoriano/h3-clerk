@@ -1,11 +1,9 @@
 import type { H3Event } from 'h3'
 import { createClerkClient } from '@clerk/backend'
 import { isTruthy } from '@clerk/shared/underscore'
-// @ts-expect-error: Nitro internal
-import { useRuntimeConfig } from '#imports'
 
 export function clerkClient(event: H3Event) {
-  const runtimeConfig = useRuntimeConfig(event) as Record<string, any>
+  const runtimeConfig = event.context.nitro.runtimeConfig as Record<string, any>
 
   return createClerkClient({
     publishableKey: runtimeConfig.clerk.publishableKey,
