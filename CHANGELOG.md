@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.25
+
+### Patch Changes
+
+- 9141ed8: Bump @clerk/backend from 1.23.7 to 1.23.8
+- 9141ed8: Bump @clerk/shared from 2.20.14 to 2.20.15
+- 9141ed8: Bump @clerk/types from 4.44.0 to 4.44.1
+- 00265b1: Rename `withClerkMiddleware` to `clerkMiddleware`
+
 ## 0.5.24
 
 ### Patch Changes
