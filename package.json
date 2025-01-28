@@ -25,6 +25,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
+    },
+    "./nitro": {
+      "types": "./dist/nitro/index.d.ts",
+      "import": "./dist/nitro/index.mjs",
+      "require": "./dist/nitro/index.js"
     }
   },
   "main": "./dist/index.js",
