@@ -16,11 +16,11 @@ npm install h3-clerk
 
 ```ts
 import { createApp, eventHandler, setResponseStatus } from 'h3'
-import { clerkClient, getAuth, withClerkMiddleware } from 'h3-clerk'
+import { clerkClient, clerkMiddleware, getAuth } from 'h3-clerk'
 
 const app = createApp()
 
-app.use(withClerkMiddleware())
+app.use(clerkMiddleware())
 
 app.use('/protected-endpoint', async (event) => {
   const { userId } = getAuth(event)
@@ -38,22 +38,22 @@ app.use('/protected-endpoint', async (event) => {
 
 ## Available methods
 
-### `withClerkMiddleware()`
+### `clerkMiddleware()`
 
-The `withClerkMiddleware()` middleware integrates Clerk authentication into your H3 application. It is required to be set in the middleware chain before using other Clerk utilities, such as `getAuth()`.
+The `clerkMiddleware()` middleware integrates Clerk authentication into your H3 application. It is required to be set in the middleware chain before using other Clerk utilities, such as `getAuth()`.
 
 ```ts
 import { createApp } from 'h3'
-import { withClerkMiddleware } from 'h3-clerk'
+import { clerkMiddleware } from 'h3-clerk'
 
 const app = createApp()
 
-app.use(withClerkMiddleware())
+app.use(clerkMiddleware())
 ```
 
 #### Options
 
-The `withClerkMiddleware()` middleware accepts [these options](https://clerk.com/docs/references/nextjs/clerk-middleware#clerk-middleware-options) plus the following:
+The `clerkMiddleware()` middleware accepts [these options](https://clerk.com/docs/references/nextjs/clerk-middleware#clerk-middleware-options) plus the following:
 
 - `enableHandshake` - Enables Clerk's handshake flow, which helps verify the session state when a session JWT has expired. It issues a 307 redirect to refresh the session JWT if the user is still logged in.
 
@@ -63,11 +63,11 @@ The `getAuth()` function retrieves authentication state from the [event object](
 
 ```ts
 import { createApp, eventHandler, setResponseStatus } from 'h3'
-import { getAuth, withClerkMiddleware } from 'h3-clerk'
+import { clerkMiddleware, getAuth } from 'h3-clerk'
 
 const app = createApp()
 
-app.use(withClerkMiddleware())
+app.use(clerkMiddleware())
 
 app.use('/protected-endpoint', async (event) => {
   const { userId, has } = getAuth(event)

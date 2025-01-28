@@ -3,7 +3,8 @@ import type { Test } from 'supertest'
 import type TestAgent from 'supertest/lib/agent'
 import { createApp, eventHandler, getQuery, readBody, toNodeListener } from 'h3'
 import supertest from 'supertest'
-import { getAuth, withClerkMiddleware } from '../'
+import { withClerkMiddleware } from '../clerkMiddleware'
+import { getAuth } from '../getAuth'
 
 const authenticateRequestMock = vi.fn()
 

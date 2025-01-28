@@ -6,7 +6,7 @@ import * as constants from './constants'
 import { handshakeWithoutRedirect } from './errors'
 import { toWebRequest } from './utils'
 
-export function withClerkMiddleware(options?: ClerkOptions) {
+export function clerkMiddleware(options?: ClerkOptions) {
   return eventHandler(async (event) => {
     const clerkRequest = toWebRequest(event)
 
@@ -35,6 +35,11 @@ export function withClerkMiddleware(options?: ClerkOptions) {
     event.context.auth = requestState.toAuth()
   })
 }
+
+/**
+ * @deprecated Use `clerkMiddleware` instead.
+ */
+export const withClerkMiddleware = clerkMiddleware
 
 declare module 'h3' {
   interface H3EventContext {
