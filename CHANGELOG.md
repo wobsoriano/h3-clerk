@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.31
+
+### Patch Changes
+
+- 1fab001: Bump @clerk/backend from 1.24.2 to 1.25.0
+- 1fab001: Bump @clerk/shared from 2.22.0 to 3.0.0
+- 1fab001: Bump @clerk/types from 4.46.1 to 4.47.0
+
 ## 0.5.30
 
 ### Patch Changes
