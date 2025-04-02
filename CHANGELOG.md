@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.33
+
+### Patch Changes
+
+- a39fb9c: Bump @clerk/backend from 1.25.2 to 1.25.8
+- a39fb9c: Bump @clerk/shared from 3.0.1 to 3.2.3
+- a39fb9c: Bump @clerk/types from 4.48.0 to 4.50.1
+
 ## 0.5.32
 
 ### Patch Changes
