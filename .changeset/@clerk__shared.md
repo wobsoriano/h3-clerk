@@ -2,4 +2,4 @@
 "h3-clerk": patch
 ---
 
-Bump @clerk/shared from 3.3.0 to 3.4.0
+Bump @clerk/shared from 3.3.0 to 3.4.1
