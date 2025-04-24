@@ -2,4 +2,4 @@
 "h3-clerk": patch
 ---
 
-Bump @clerk/types from 4.50.2 to 4.51.0
+Bump @clerk/types from 4.50.2 to 4.51.1
