@@ -1,7 +1,7 @@
 {
   "name": "h3-clerk",
   "type": "module",
-  "version": "0.5.34",
+  "version": "0.5.35",
   "packageManager": "pnpm@9.13.2",
   "description": "Unofficial Clerk middleware for H3.",
   "author": "Robert Soriano <sorianorobertc@gmail.com>",
