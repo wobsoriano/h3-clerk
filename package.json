@@ -1,5 +1,6 @@
 {
   "name": "h3-clerk",
+  "type": "module",
   "version": "0.5.34",
   "packageManager": "pnpm@9.13.2",
   "description": "Unofficial Clerk middleware for H3.",
@@ -21,21 +22,25 @@
   ],
   "sideEffects": false,
   "exports": {
-    ".": {
+    "import": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "default": "./dist/index.js"
+    },
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
     }
   },
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
-    "lint": "eslint .",
+    "build": "tsdown",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "prepublishOnly": "pnpm build",
     "release": "changeset publish",
     "test": "vitest",
@@ -49,14 +54,13 @@
     "@clerk/shared": "^3.4.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.9.1",
+    "@antfu/eslint-config": "^4.12.0",
     "@changesets/cli": "^2.27.9",
     "@types/supertest": "^6.0.2",
-    "eslint": "^9.15.0",
-    "eslint-plugin-import": "^2.31.0",
+    "eslint": "^9.24.0",
     "h3": "^1.13.0",
     "supertest": "^7.0.0",
-    "tsup": "8.0.1",
+    "tsdown": "^0.9.6",
     "typescript": "^5.6.3",
     "vitest": "^2.1.5",
     "vitest-fetch-mock": "^0.4.2"
