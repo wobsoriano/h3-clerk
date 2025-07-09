@@ -37,11 +37,6 @@ export function clerkMiddleware(options?: ClerkOptions) {
   })
 }
 
-/**
- * @deprecated Use `clerkMiddleware` instead.
- */
-export const withClerkMiddleware = clerkMiddleware
-
 declare module 'h3' {
   interface H3EventContext {
     auth: AuthObject | null
