@@ -1,5 +1,5 @@
 import type { AuthObject, ClerkOptions } from '@clerk/backend'
-import { AuthStatus } from '@clerk/backend/internal'
+import { AuthStatus, TokenType } from '@clerk/backend/internal'
 import { eventHandler, setResponseHeader } from 'h3'
 import { clerkClient } from './clerkClient'
 import * as constants from './constants'
@@ -14,6 +14,7 @@ export function clerkMiddleware(options?: ClerkOptions) {
       ...options,
       secretKey: options?.secretKey ?? constants.SECRET_KEY,
       publishableKey: options?.publishableKey ?? constants.PUBLISHABLE_KEY,
+      acceptsToken: TokenType.SessionToken,
     })
 
     const locationHeader = requestState.headers.get(constants.Headers.Location)

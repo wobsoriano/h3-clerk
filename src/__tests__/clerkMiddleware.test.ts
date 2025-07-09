@@ -3,7 +3,7 @@ import type { Test } from 'supertest'
 import type TestAgent from 'supertest/lib/agent'
 import { createApp, eventHandler, getQuery, readBody, toNodeListener } from 'h3'
 import supertest from 'supertest'
-import { withClerkMiddleware } from '../clerkMiddleware'
+import { clerkMiddleware } from '../clerkMiddleware'
 import { getAuth } from '../getAuth'
 
 const authenticateRequestMock = vi.fn()
@@ -20,14 +20,14 @@ vi.mock('@clerk/backend', async () => {
   }
 })
 
-describe('withClerkMiddleware(options)', () => {
+describe('clerkMiddleware(options)', () => {
   let app: App
   let request: TestAgent<Test>
 
   beforeEach(() => {
     vi.clearAllMocks()
     vi.restoreAllMocks()
-    app = createApp().use(withClerkMiddleware())
+    app = createApp().use(clerkMiddleware())
     request = supertest(toNodeListener(app))
   })
 
