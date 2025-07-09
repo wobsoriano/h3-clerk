@@ -9,10 +9,10 @@ importers:
   .:
     dependencies:
       '@clerk/backend':
-        specifier: ^2.0.0
+        specifier: ^2.4.1
         version: 2.4.1(react@19.1.0)
       '@clerk/shared':
-        specifier: ^3.9.6
+        specifier: ^3.11.0
         version: 3.11.0(react@19.1.0)
     devDependencies:
       '@antfu/eslint-config':
