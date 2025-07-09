@@ -6,14 +6,14 @@ For more info, check out the repo: https://github.com/wobsoriano/h3-clerk#usage.
 }
 
 export const middlewareRegistrationRequired
-  = createErrorMessage(`The "withClerkMiddleware" should be registered before using the "getAuth".
+  = createErrorMessage(`The "clerkMiddleware()" middleware should be registered before using the "getAuth".
 Example:
 
 import { createApp } from 'h3'
-import { withClerkMiddleware } from 'h3-clerk'
+import { clerkMiddleware } from 'h3-clerk'
 
 const app = createApp()
-app.use(withClerkMiddleware())
+app.use(clerkMiddleware())
 `)
 
 export const handshakeWithoutRedirect = 'Clerk: handshake status without redirect'
