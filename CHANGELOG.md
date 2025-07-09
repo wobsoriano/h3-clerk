@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0
+
+### Minor Changes
+
+- 71f813b: Bump `@clerk/backend` to 2.4.1 and `@clerk/shared` to 3.11.0
+
 ## 0.5.36
 
 ### Patch Changes
