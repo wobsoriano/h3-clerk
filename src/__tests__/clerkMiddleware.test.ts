@@ -1,7 +1,6 @@
-import type { App } from 'h3'
 import type { Test } from 'supertest'
 import type TestAgent from 'supertest/lib/agent'
-import { createApp, eventHandler, getQuery, readBody, toNodeListener } from 'h3'
+import { eventHandler, getQuery, H3, readBody, toNodeHandler } from 'h3'
 import supertest from 'supertest'
 import { clerkMiddleware } from '../clerkMiddleware'
 import { getAuth } from '../getAuth'
@@ -21,14 +20,14 @@ vi.mock('@clerk/backend', async () => {
 })
 
 describe('clerkMiddleware(options)', () => {
-  let app: App
+  let app: H3
   let request: TestAgent<Test>
 
   beforeEach(() => {
     vi.clearAllMocks()
     vi.restoreAllMocks()
-    app = createApp().use(clerkMiddleware())
-    request = supertest(toNodeListener(app))
+    app = new H3().use(clerkMiddleware())
+    request = supertest(toNodeHandler(app))
   })
 
   it('handles signin with Authorization Bearer', async () => {
