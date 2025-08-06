@@ -47,7 +47,7 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "h3": "^1.15.0"
+    "h3": "^2.0.0-beta.3"
   },
   "dependencies": {
     "@clerk/backend": "^2.6.2",
@@ -58,7 +58,7 @@
     "@changesets/cli": "^2.27.9",
     "@types/supertest": "^6.0.2",
     "eslint": "^9.24.0",
-    "h3": "^1.15.3",
+    "h3": "2.0.0-beta.3",
     "supertest": "^7.0.0",
     "tsdown": "^0.12.9",
     "typescript": "^5.6.3",

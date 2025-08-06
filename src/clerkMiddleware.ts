@@ -1,16 +1,13 @@
 import type { AuthObject, ClerkOptions } from '@clerk/backend'
 import { AuthStatus, TokenType } from '@clerk/backend/internal'
-import { eventHandler, setResponseHeader } from 'h3'
+import { eventHandler } from 'h3'
 import { clerkClient } from './clerkClient'
 import * as constants from './constants'
 import { handshakeWithoutRedirect } from './errors'
-import { toWebRequest } from './utils'
 
 export function clerkMiddleware(options?: ClerkOptions) {
   return eventHandler(async (event) => {
-    const clerkRequest = toWebRequest(event)
-
-    const requestState = await clerkClient.authenticateRequest(clerkRequest, {
+    const requestState = await clerkClient.authenticateRequest(event.req, {
       ...options,
       secretKey: options?.secretKey ?? constants.SECRET_KEY,
       publishableKey: options?.publishableKey ?? constants.PUBLISHABLE_KEY,
@@ -29,7 +26,7 @@ export function clerkMiddleware(options?: ClerkOptions) {
 
     if (requestState.headers) {
       requestState.headers.forEach((value, key) => {
-        setResponseHeader(event, key, value)
+        event.res.headers.set(key, value)
       })
     }
 
