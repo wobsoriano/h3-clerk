@@ -1,5 +1,5 @@
 import type { SessionAuthObject } from '@clerk/backend'
-import type { AuthenticateRequestOptions } from '@clerk/backend/internal';
+import type { AuthenticateRequestOptions } from '@clerk/backend/internal'
 import type { EventHandler } from 'h3'
 import { AuthStatus, TokenType } from '@clerk/backend/internal'
 import { eventHandler, setResponseHeader } from 'h3'
