@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: [20.x]
+        node: [22.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
       fail-fast: false
 
@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
       - uses: pnpm/action-setup@v4
         with:
-          version: 9.13.2
+          version: 10.20.0
 
       - name: Set up Node.js ${{ matrix.node }}
         uses: actions/setup-node@v4

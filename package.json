@@ -2,7 +2,7 @@
   "name": "h3-clerk",
   "type": "module",
   "version": "0.6.1",
-  "packageManager": "pnpm@9.13.2",
+  "packageManager": "pnpm@10.20.0",
   "description": "Unofficial Clerk middleware for H3.",
   "author": "Robert Soriano <sorianorobertc@gmail.com>",
   "license": "MIT",
@@ -22,14 +22,8 @@
   ],
   "sideEffects": false,
   "exports": {
-    "import": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "require": {
-      "types": "./dist/index.d.cts",
-      "default": "./dist/index.cjs"
-    }
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -50,19 +44,20 @@
     "h3": "^1.15.0"
   },
   "dependencies": {
-    "@clerk/backend": "^2.6.3",
-    "@clerk/shared": "^3.18.0"
+    "@clerk/backend": "^2.19.1",
+    "@clerk/shared": "^3.29.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.12.0",
-    "@changesets/cli": "^2.27.9",
-    "@types/supertest": "^6.0.2",
-    "eslint": "^9.24.0",
-    "h3": "^1.15.3",
-    "supertest": "^7.0.0",
+    "@antfu/eslint-config": "^4.19.0",
+    "@changesets/cli": "^2.29.7",
+    "@types/node": "^24.10.0",
+    "@types/supertest": "^6.0.3",
+    "eslint": "^9.39.0",
+    "h3": "^1.15.4",
+    "supertest": "^7.1.4",
     "tsdown": "^0.12.9",
-    "typescript": "^5.6.3",
-    "vitest": "^2.1.5",
-    "vitest-fetch-mock": "^0.4.2"
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.9",
+    "vitest-fetch-mock": "^0.4.5"
   }
 }
