@@ -50,6 +50,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.19.0",
     "@changesets/cli": "^2.29.7",
+    "@types/node": "^24.10.0",
     "@types/supertest": "^6.0.3",
     "eslint": "^9.39.0",
     "h3": "^1.15.4",
