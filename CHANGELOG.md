@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.7.0
+
+### Minor Changes
+
+- 0536e34: Make package ESM only
+
+### Patch Changes
+
+- 0ef1a43: Bump @clerk/backend from 2.6.2 to 2.6.3
+- 0ef1a43: Bump @clerk/shared from 3.17.0 to 3.18.0
+- 0ef1a43: Bump @clerk/types from 4.72.0 to 4.73.0
+
 ## 0.6.1
 
 ### Patch Changes
