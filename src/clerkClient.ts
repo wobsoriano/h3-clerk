@@ -1,8 +1,9 @@
+import type { ClerkClient } from '@clerk/backend'
 import { createClerkClient } from '@clerk/backend'
 
 import { API_URL, API_VERSION, JWT_KEY, SECRET_KEY, TELEMETRY_DEBUG, TELEMETRY_DISABLED } from './constants'
 
-export const clerkClient = createClerkClient({
+export const clerkClient: ClerkClient = createClerkClient({
   secretKey: SECRET_KEY,
   apiUrl: API_URL,
   apiVersion: API_VERSION,

@@ -1,4 +1,5 @@
-import type { AuthObject, ClerkOptions } from '@clerk/backend'
+import type { ClerkOptions, SessionAuthObject } from '@clerk/backend'
+import type { EventHandler } from 'h3'
 import { AuthStatus, TokenType } from '@clerk/backend/internal'
 import { eventHandler, setResponseHeader } from 'h3'
 import { clerkClient } from './clerkClient'
@@ -6,7 +7,7 @@ import * as constants from './constants'
 import { handshakeWithoutRedirect } from './errors'
 import { toWebRequest } from './utils'
 
-export function clerkMiddleware(options?: ClerkOptions) {
+export function clerkMiddleware(options?: ClerkOptions): EventHandler {
   return eventHandler(async (event) => {
     const clerkRequest = toWebRequest(event)
 
@@ -39,6 +40,6 @@ export function clerkMiddleware(options?: ClerkOptions) {
 
 declare module 'h3' {
   interface H3EventContext {
-    auth: AuthObject | null
+    auth: SessionAuthObject | null
   }
 }
