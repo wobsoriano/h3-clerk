@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.1
+
+### Patch Changes
+
+- ae4ec98: Bump @clerk/backend from 2.19.1 to 2.19.3
+- ae4ec98: Bump @clerk/shared from 3.29.0 to 3.31.0
+- ae4ec98: Bump @clerk/types from 4.96.0 to 4.97.1
+
 ## 0.7.0
 
 ### Minor Changes
