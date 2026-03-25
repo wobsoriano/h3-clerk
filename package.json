@@ -44,8 +44,8 @@
     "h3": "^1.15.0"
   },
   "dependencies": {
-    "@clerk/backend": "^2.25.0",
-    "@clerk/shared": "^3.37.0"
+    "@clerk/backend": "^3.2.2",
+    "@clerk/shared": "^4.3.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.19.0",
