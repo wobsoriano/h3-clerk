@@ -2,4 +2,4 @@
 "h3-clerk": patch
 ---
 
-Bump @clerk/backend from 2.19.3 to 2.25.0
+Bump @clerk/backend from 2.19.3 to 3.2.2
