@@ -1,6 +1,13 @@
-import { createClerkClient } from '@clerk/backend'
+import { createClerkClient } from '@clerk/backend';
 
-import { API_URL, API_VERSION, JWT_KEY, SECRET_KEY, TELEMETRY_DEBUG, TELEMETRY_DISABLED } from './constants'
+import {
+  API_URL,
+  API_VERSION,
+  JWT_KEY,
+  SECRET_KEY,
+  TELEMETRY_DEBUG,
+  TELEMETRY_DISABLED,
+} from './constants';
 
 export const clerkClient = createClerkClient({
   secretKey: SECRET_KEY,
@@ -11,4 +18,4 @@ export const clerkClient = createClerkClient({
     disabled: TELEMETRY_DISABLED,
     debug: TELEMETRY_DEBUG,
   },
-})
+});

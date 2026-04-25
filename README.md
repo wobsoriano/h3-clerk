@@ -15,25 +15,25 @@ npm install h3-clerk
 ## Usage
 
 ```ts
-import { createApp, eventHandler, setResponseStatus } from 'h3'
-import { clerkClient, clerkMiddleware, getAuth } from 'h3-clerk'
+import { H3, setResponseStatus } from 'h3';
+import { clerkClient, clerkMiddleware, getAuth } from 'h3-clerk';
 
-const app = createApp()
+const app = new H3();
 
-app.use(clerkMiddleware())
+app.use(clerkMiddleware());
 
 app.use('/protected-endpoint', async (event) => {
-  const { userId } = getAuth(event)
+  const { userId } = getAuth(event);
 
   if (!userId) {
-    setResponseStatus(event, 401, 'Unauthorized')
-    return
+    setResponseStatus(event, 401, 'Unauthorized');
+    return;
   }
 
-  const user = await clerkClient.users.getUser(userId)
+  const user = await clerkClient.users.getUser(userId);
 
-  return { user }
-})
+  return { user };
+});
 ```
 
 ## Available methods
@@ -43,12 +43,12 @@ app.use('/protected-endpoint', async (event) => {
 The `clerkMiddleware()` middleware integrates Clerk authentication into your H3 application. It is required to be set in the middleware chain before using other Clerk utilities, such as `getAuth()`.
 
 ```ts
-import { createApp } from 'h3'
-import { clerkMiddleware } from 'h3-clerk'
+import { H3 } from 'h3';
+import { clerkMiddleware } from 'h3-clerk';
 
-const app = createApp()
+const app = new H3();
 
-app.use(clerkMiddleware())
+app.use(clerkMiddleware());
 ```
 
 #### Options
@@ -59,26 +59,26 @@ The `clerkMiddleware()` middleware accepts [these options](https://clerk.com/doc
 
 ### `getAuth()`
 
-The `getAuth()` function retrieves authentication state from the [event object](https://h3.unjs.io/guide/event).
+The `getAuth()` function retrieves authentication state from the [event object](https://h3.dev/guide/api/h3event).
 
 ```ts
-import { createApp, eventHandler, setResponseStatus } from 'h3'
-import { clerkMiddleware, getAuth } from 'h3-clerk'
+import { H3, setResponseStatus } from 'h3';
+import { clerkMiddleware, getAuth } from 'h3-clerk';
 
-const app = createApp()
+const app = new H3();
 
-app.use(clerkMiddleware())
+app.use(clerkMiddleware());
 
 app.use('/protected-endpoint', async (event) => {
-  const { userId, has } = getAuth(event)
+  const { userId, has } = getAuth(event);
 
   if (!userId || !has({ role: 'org:admin' })) {
-    setResponseStatus(event, 401, 'Unauthorized')
-    return
+    setResponseStatus(event, 401, 'Unauthorized');
+    return;
   }
 
-  return { message: 'Hello, admin' }
-})
+  return { message: 'Hello, admin' };
+});
 ```
 
 ### `clerkClient`
@@ -88,13 +88,13 @@ app.use('/protected-endpoint', async (event) => {
 All resource operations are mounted as sub-APIs on the `clerkClient` object. See the [reference documentation](https://clerk.com/docs/references/backend/overview#usage) for more information.
 
 ```ts
-import { clerkClient } from 'h3-clerk'
+import { clerkClient } from 'h3-clerk';
 
 app.use('/users', async (event) => {
-  const users = await clerkClient.users.getUserList()
+  const users = await clerkClient.users.getUserList();
 
-  return { users }
-})
+  return { users };
+});
 ```
 
 ## License
