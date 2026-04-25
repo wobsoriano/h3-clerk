@@ -1,12 +1,13 @@
 import type { AuthObject, ClerkOptions } from '@clerk/backend'
 import { AuthStatus, TokenType } from '@clerk/backend/internal'
-import { eventHandler } from 'h3'
+import { defineMiddleware } from 'h3'
+import type { Middleware } from 'h3'
 import { clerkClient } from './clerkClient'
 import * as constants from './constants'
 import { handshakeWithoutRedirect } from './errors'
 
-export function clerkMiddleware(options?: ClerkOptions) {
-  return eventHandler(async (event) => {
+export function clerkMiddleware(options?: ClerkOptions): Middleware {
+  return defineMiddleware(async (event) => {
     const requestState = await clerkClient.authenticateRequest(event.req, {
       ...options,
       secretKey: options?.secretKey ?? constants.SECRET_KEY,
