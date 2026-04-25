@@ -7,6 +7,7 @@ import {
   SECRET_KEY,
   TELEMETRY_DEBUG,
   TELEMETRY_DISABLED,
+  MACHINE_SECRET_KEY,
 } from './constants';
 
 export const clerkClient = createClerkClient({
@@ -18,4 +19,5 @@ export const clerkClient = createClerkClient({
     disabled: TELEMETRY_DISABLED,
     debug: TELEMETRY_DEBUG,
   },
+  machineSecretKey: MACHINE_SECRET_KEY,
 });
