@@ -53,9 +53,7 @@ app.use(clerkMiddleware());
 
 #### Options
 
-The `clerkMiddleware()` middleware accepts [these options](https://clerk.com/docs/references/nextjs/clerk-middleware#clerk-middleware-options) plus the following:
-
-- `enableHandshake` - Enables Clerk's handshake flow, which helps verify the session state when a session JWT has expired. It issues a 307 redirect to refresh the session JWT if the user is still logged in.
+The `clerkMiddleware()` helper accepts the same options as Clerk's middleware: [these options](https://clerk.com/docs/references/nextjs/clerk-middleware#clerk-middleware-options).
 
 ### `getAuth()`
 
@@ -78,6 +76,41 @@ app.use('/protected-endpoint', async (event) => {
   }
 
   return { message: 'Hello, admin' };
+});
+```
+
+#### Using `acceptsToken` for machine auth
+
+You can pass `acceptsToken` to `getAuth()` when you want to verify other token types (for example `api_key` and `m2m_token`).
+
+```ts
+import { H3, setResponseStatus } from 'h3';
+import { clerkMiddleware, getAuth } from 'h3-clerk';
+
+const app = new H3();
+
+app.use(clerkMiddleware());
+
+app.use('/machine-endpoint', async (event) => {
+  const auth = getAuth(event, { acceptsToken: 'api_key' });
+
+  if (auth.tokenType !== 'api_key') {
+    setResponseStatus(event, 401, 'Unauthorized');
+    return;
+  }
+
+  return {
+    apiKeyId: auth.id,
+    userId: auth.userId,
+  };
+});
+```
+
+You can also pass multiple token types:
+
+```ts
+const auth = getAuth(event, {
+  acceptsToken: ['session_token', 'api_key', 'm2m_token'],
 });
 ```
 
