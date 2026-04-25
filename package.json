@@ -1,63 +1,64 @@
 {
   "name": "h3-clerk",
-  "type": "module",
-  "version": "0.7.1",
-  "packageManager": "pnpm@10.20.0",
+  "version": "0.6.1",
   "description": "Unofficial Clerk middleware for H3.",
-  "author": "Robert Soriano <sorianorobertc@gmail.com>",
-  "license": "MIT",
+  "keywords": [
+    "auth",
+    "authentication",
+    "h3",
+    "jwt",
+    "passwordless",
+    "session"
+  ],
   "homepage": "https://github.com/wobsoriano/h3-clerk#readme",
+  "bugs": "https://github.com/wobsoriano/h3-clerk/issues",
+  "license": "MIT",
+  "author": "Robert Soriano <sorianorobertc@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wobsoriano/h3-clerk.git"
   },
-  "bugs": "https://github.com/wobsoriano/h3-clerk/issues",
-  "keywords": [
-    "auth",
-    "authentication",
-    "passwordless",
-    "session",
-    "jwt",
-    "h3"
-  ],
-  "sideEffects": false,
-  "exports": {
-    ".": "./dist/index.js",
-    "./package.json": "./package.json"
-  },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "scripts": {
-    "build": "tsdown",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix",
-    "prepublishOnly": "pnpm build",
-    "release": "changeset publish",
-    "test": "vitest",
-    "typecheck": "tsc --noEmit"
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    }
   },
-  "peerDependencies": {
-    "h3": "^1.15.0"
+  "scripts": {
+    "build": "vp pack",
+    "prepublishOnly": "vp run build",
+    "release": "changeset publish",
+    "fmt": "vp fmt",
+    "lint": "vp lint",
+    "lint:fix": "vp lint --fix",
+    "test": "vp test",
+    "typecheck": "tsc --noEmit",
+    "prepare": "vp config"
   },
   "dependencies": {
-    "@clerk/backend": "^2.25.0",
-    "@clerk/shared": "^3.37.0"
+    "@clerk/backend": "^3.4.1",
+    "@clerk/shared": "^4.8.5"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.19.0",
-    "@changesets/cli": "^2.29.7",
-    "@types/node": "^24.10.0",
-    "@types/supertest": "^6.0.3",
-    "eslint": "^9.39.0",
-    "h3": "^1.15.4",
-    "supertest": "^7.1.4",
-    "tsdown": "^0.12.9",
-    "typescript": "^5.9.3",
-    "vitest": "^2.1.9",
+    "@changesets/cli": "^2.31.0",
+    "@types/supertest": "^7.2.0",
+    "h3": "2.0.1-rc.20",
+    "supertest": "^7.2.2",
+    "typescript": "^6.0.3",
+    "vite-plus": "catalog:",
     "vitest-fetch-mock": "^0.4.5"
-  }
+  },
+  "peerDependencies": {
+    "h3": "^2.0.0"
+  },
+  "packageManager": "pnpm@10.33.2"
 }

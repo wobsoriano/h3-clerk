@@ -1,19 +1,16 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "lib": ["es2023"],
-    "moduleDetection": "force",
-    "module": "preserve",
+    "target": "es2018",
+    "lib": ["esnext", "DOM"],
+    "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "types": ["node", "vitest/globals"],
+    "types": ["vite-plus/test/globals"],
     "strict": true,
-    "noUnusedLocals": true,
-    "declaration": true,
+    "strictNullChecks": true,
     "esModuleInterop": true,
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true,
+    "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
-  "include": ["src"]
+  "exclude": ["node_modules", "dist"]
 }

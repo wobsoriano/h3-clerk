@@ -1,48 +1,59 @@
-import type { SessionAuthObject } from '@clerk/backend'
-import type { AuthenticateRequestOptions } from '@clerk/backend/internal'
-import type { EventHandler } from 'h3'
-import { AuthStatus, TokenType } from '@clerk/backend/internal'
-import { eventHandler, setResponseHeader } from 'h3'
-import { clerkClient } from './clerkClient'
-import * as constants from './constants'
-import { handshakeWithoutRedirect } from './errors'
-import { toWebRequest } from './utils'
+import type { AuthObject } from '@clerk/backend';
+import {
+  AuthStatus,
+  GetAuthFnNoRequest,
+  getAuthObjectForAcceptedToken,
+  type AuthenticateRequestOptions,
+  type AuthOptions,
+} from '@clerk/backend/internal';
+import { defineMiddleware } from 'h3';
+import type { Middleware } from 'h3';
 
-export type ClerkMiddlewareOptions = Omit<AuthenticateRequestOptions, 'acceptsToken'>
+import { clerkClient } from './clerkClient';
+import * as constants from './constants';
+import { handshakeWithoutRedirect } from './errors';
 
-export function clerkMiddleware(options?: ClerkMiddlewareOptions): EventHandler {
-  return eventHandler(async (event) => {
-    const clerkRequest = toWebRequest(event)
+type ClerkMiddlewareOptions = Omit<AuthenticateRequestOptions, 'acceptsToken'>;
 
-    const requestState = await clerkClient.authenticateRequest(clerkRequest, {
+export function clerkMiddleware(options?: ClerkMiddlewareOptions): Middleware {
+  return defineMiddleware(async (event) => {
+    const requestState = await clerkClient.authenticateRequest(event.req, {
       ...options,
       secretKey: options?.secretKey ?? constants.SECRET_KEY,
       publishableKey: options?.publishableKey ?? constants.PUBLISHABLE_KEY,
-      acceptsToken: TokenType.SessionToken,
-    })
+      acceptsToken: 'any',
+    });
 
-    const locationHeader = requestState.headers.get(constants.Headers.Location)
+    const locationHeader = requestState.headers.get(constants.Headers.Location);
     if (locationHeader) {
       // Trigger a handshake redirect
-      return new Response(null, { status: 307, headers: requestState.headers })
+      return new Response(null, { status: 307, headers: requestState.headers });
     }
 
     if (requestState.status === AuthStatus.Handshake) {
-      throw new Error(handshakeWithoutRedirect)
+      throw new Error(handshakeWithoutRedirect);
     }
 
     if (requestState.headers) {
       requestState.headers.forEach((value, key) => {
-        setResponseHeader(event, key, value)
-      })
+        event.res.headers.set(key, value);
+      });
     }
 
-    event.context.auth = requestState.toAuth()
-  })
+    const authObjectFn = ((options?: AuthOptions) =>
+      getAuthObjectForAcceptedToken({
+        authObject: requestState.toAuth({
+          treatPendingAsSignedOut: options?.treatPendingAsSignedOut,
+        }) as AuthObject,
+        acceptsToken: options?.acceptsToken,
+      })) as GetAuthFnNoRequest;
+
+    event.context.auth = authObjectFn;
+  });
 }
 
 declare module 'h3' {
   interface H3EventContext {
-    auth: SessionAuthObject | null
+    auth: GetAuthFnNoRequest;
   }
 }

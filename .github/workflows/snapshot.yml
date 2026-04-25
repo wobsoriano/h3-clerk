@@ -1,0 +1,26 @@
+name: Snapshot release
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Vite+
+        uses: voidzero-dev/setup-vp@v1
+        with:
+          node-version: '24'
+          cache: true
+
+      - name: Pack
+        run: vp pack
+
+      - name: Create a snapshot version
+        id: snapshot
+        run: vp dlx pkg-pr-new publish --compact

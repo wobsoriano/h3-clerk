@@ -1,5 +1,5 @@
-export { clerkClient } from './clerkClient'
-export { clerkMiddleware, type ClerkMiddlewareOptions } from './clerkMiddleware'
+export { clerkClient } from './clerkClient';
 
-export { getAuth } from './getAuth'
-export * from '@clerk/backend'
+export { clerkMiddleware } from './clerkMiddleware';
+export { getAuth } from './getAuth';
+export * from '@clerk/backend';
