@@ -9,6 +9,15 @@ import { getAuth } from '../getAuth';
 
 const authenticateRequestMock = vi.fn();
 
+const createMockSessionAuth = () => ({
+  tokenType: 'session_token' as const,
+  userId: 'user_123',
+  sessionId: 'sess_456',
+  orgId: null,
+  orgRole: null,
+  orgSlug: null,
+});
+
 vi.mock('@clerk/backend', async () => {
   const mod = await vi.importActual('@clerk/backend');
   return {
@@ -35,7 +44,7 @@ describe('clerkMiddleware(options)', () => {
   it('handles signin with Authorization Bearer', async () => {
     authenticateRequestMock.mockResolvedValueOnce({
       headers: new Headers(),
-      toAuth: () => 'mockedAuth',
+      toAuth: createMockSessionAuth,
     });
 
     app.use(
@@ -58,7 +67,7 @@ describe('clerkMiddleware(options)', () => {
     });
 
     expect(result.statusCode).toBe(200);
-    expect(result.body).toEqual({ auth: 'mockedAuth' });
+    expect(result.body).toEqual({ auth: createMockSessionAuth() });
     expect(authenticateRequestMock).toBeCalledWith(
       expect.any(Request),
       expect.objectContaining({
@@ -70,7 +79,7 @@ describe('clerkMiddleware(options)', () => {
   it('handles signin with cookie', async () => {
     authenticateRequestMock.mockResolvedValueOnce({
       headers: new Headers(),
-      toAuth: () => 'mockedAuth',
+      toAuth: createMockSessionAuth,
     });
 
     app.use(
@@ -93,7 +102,7 @@ describe('clerkMiddleware(options)', () => {
     });
 
     expect(result.statusCode).toBe(200);
-    expect(result.body).toEqual({ auth: 'mockedAuth' });
+    expect(result.body).toEqual({ auth: createMockSessionAuth() });
     expect(authenticateRequestMock).toBeCalledWith(
       expect.any(Request),
       expect.objectContaining({
@@ -113,7 +122,7 @@ describe('clerkMiddleware(options)', () => {
         'x-clerk-auth-reason': 'auth-reason',
         'x-clerk-auth-status': 'handshake',
       }),
-      toAuth: () => 'mockedAuth',
+      toAuth: createMockSessionAuth,
     });
 
     app.use(
@@ -140,7 +149,7 @@ describe('clerkMiddleware(options)', () => {
   it('handles signout case by populating the req.auth', async () => {
     authenticateRequestMock.mockResolvedValueOnce({
       headers: new Headers(),
-      toAuth: () => 'mockedAuth',
+      toAuth: createMockSessionAuth,
     });
 
     app.use(
@@ -154,7 +163,7 @@ describe('clerkMiddleware(options)', () => {
     const result = await request.get('/').set('Authorization', 'Bearer deadbeef');
 
     expect(result.statusCode).toBe(200);
-    expect(result.body).toEqual({ auth: 'mockedAuth' });
+    expect(result.body).toEqual({ auth: createMockSessionAuth() });
     expect(authenticateRequestMock).toBeCalledWith(
       expect.any(Request),
       expect.objectContaining({
@@ -166,7 +175,7 @@ describe('clerkMiddleware(options)', () => {
   it('should not have problems with h3 utils', async () => {
     authenticateRequestMock.mockResolvedValueOnce({
       headers: new Headers(),
-      toAuth: () => 'mockedAuth',
+      toAuth: createMockSessionAuth,
     });
 
     app.use(
@@ -187,6 +196,72 @@ describe('clerkMiddleware(options)', () => {
       query: {
         id: '123',
       },
+    });
+  });
+
+  describe('Machine Auth', () => {
+    it('handles machine auth with api_key using acceptsToken as string', async () => {
+      authenticateRequestMock.mockResolvedValueOnce({
+        headers: new Headers(),
+        toAuth: () => ({
+          tokenType: 'api_key',
+          id: 'ak_1234',
+          userId: 'user_456',
+          orgId: null,
+        }),
+      });
+
+      app.use(
+        '/',
+        eventHandler((event) => {
+          const auth = getAuth(event, { acceptsToken: 'api_key' });
+          return { auth };
+        }),
+      );
+
+      const result = await request.get('/').set('Authorization', 'Bearer ak_deadbeef');
+
+      expect(result.statusCode).toBe(200);
+      expect(result.body).toEqual({
+        auth: {
+          tokenType: 'api_key',
+          id: 'ak_1234',
+          userId: 'user_456',
+          orgId: null,
+        },
+      });
+    });
+
+    it('handles machine auth with api_key using acceptsToken as array', async () => {
+      authenticateRequestMock.mockResolvedValueOnce({
+        headers: new Headers(),
+        toAuth: () => ({
+          tokenType: 'api_key',
+          id: 'ak_5678',
+          userId: 'user_789',
+          orgId: null,
+        }),
+      });
+
+      app.use(
+        '/',
+        eventHandler((event) => {
+          const auth = getAuth(event, { acceptsToken: ['api_key', 'session_token'] });
+          return { auth };
+        }),
+      );
+
+      const result = await request.get('/').set('Authorization', 'Bearer ak_deadbeef');
+
+      expect(result.statusCode).toBe(200);
+      expect(result.body).toEqual({
+        auth: {
+          tokenType: 'api_key',
+          id: 'ak_5678',
+          userId: 'user_789',
+          orgId: null,
+        },
+      });
     });
   });
 });

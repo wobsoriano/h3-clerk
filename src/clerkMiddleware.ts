@@ -1,5 +1,11 @@
-import type { AuthObject, ClerkOptions } from '@clerk/backend';
-import { AuthStatus, TokenType } from '@clerk/backend/internal';
+import type { AuthObject } from '@clerk/backend';
+import {
+  AuthStatus,
+  GetAuthFnNoRequest,
+  getAuthObjectForAcceptedToken,
+  type AuthenticateRequestOptions,
+  type AuthOptions,
+} from '@clerk/backend/internal';
 import { defineMiddleware } from 'h3';
 import type { Middleware } from 'h3';
 
@@ -7,13 +13,15 @@ import { clerkClient } from './clerkClient';
 import * as constants from './constants';
 import { handshakeWithoutRedirect } from './errors';
 
-export function clerkMiddleware(options?: ClerkOptions): Middleware {
+type ClerkMiddlewareOptions = Omit<AuthenticateRequestOptions, 'acceptsToken'>;
+
+export function clerkMiddleware(options?: ClerkMiddlewareOptions): Middleware {
   return defineMiddleware(async (event) => {
     const requestState = await clerkClient.authenticateRequest(event.req, {
       ...options,
       secretKey: options?.secretKey ?? constants.SECRET_KEY,
       publishableKey: options?.publishableKey ?? constants.PUBLISHABLE_KEY,
-      acceptsToken: TokenType.SessionToken,
+      acceptsToken: 'any',
     });
 
     const locationHeader = requestState.headers.get(constants.Headers.Location);
@@ -32,12 +40,20 @@ export function clerkMiddleware(options?: ClerkOptions): Middleware {
       });
     }
 
-    event.context.auth = requestState.toAuth();
+    const authObjectFn = ((options?: AuthOptions) =>
+      getAuthObjectForAcceptedToken({
+        authObject: requestState.toAuth({
+          treatPendingAsSignedOut: options?.treatPendingAsSignedOut,
+        }) as AuthObject,
+        acceptsToken: options?.acceptsToken,
+      })) as GetAuthFnNoRequest;
+
+    event.context.auth = authObjectFn;
   });
 }
 
 declare module 'h3' {
   interface H3EventContext {
-    auth: AuthObject | null;
+    auth: GetAuthFnNoRequest;
   }
 }
