@@ -45,8 +45,8 @@
     "prepare": "vp config"
   },
   "dependencies": {
-    "@clerk/backend": "^3.4.1",
-    "@clerk/shared": "^4.8.5"
+    "@clerk/backend": "^3.4.2",
+    "@clerk/shared": "^4.8.6"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
