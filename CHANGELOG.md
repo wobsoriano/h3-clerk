@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.1
+
+### Patch Changes
+
+- 6191f38: Bump @clerk/backend from 3.4.1 to 3.4.2
+- 6191f38: Bump @clerk/shared from 4.8.5 to 4.8.6
+
 ## 1.0.0
 
 ### Major Changes
