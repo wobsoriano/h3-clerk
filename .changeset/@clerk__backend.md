@@ -2,4 +2,4 @@
 "h3-clerk": patch
 ---
 
-Bump @clerk/backend from 3.4.2 to 3.8.4
+Bump @clerk/backend from 3.4.2 to 3.15.0
