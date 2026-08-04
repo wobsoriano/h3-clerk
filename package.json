@@ -1,6 +1,6 @@
 {
   "name": "h3-clerk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Unofficial Clerk middleware for H3.",
   "keywords": [
     "auth",
